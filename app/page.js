@@ -1,5 +1,4 @@
 import Header from "@/Components/Client/Header";
-import Menu from "@/Components/Client/Menu";
 import Nav from "@/Components/Client/Nav";
 
 export default function Home() {
@@ -7,7 +6,6 @@ export default function Home() {
     <div>
       <Nav />
       <Header />
-      <Menu />
     </div>
   );
 }
