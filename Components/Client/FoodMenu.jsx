@@ -17,7 +17,7 @@ const FoodMenu = () => {
   const items = Array.isArray(food_items) ? food_items : [];
 
   return (
-    <div className="mt-20 px-5 py-40 pt-6 md:px-12 lg:px-28 ">
+    <div className="mt-20 px-5 pt-15 md:px-12 lg:px-28 ">
       <div className="text-center">
         <h2 className="text-4xl font-medium mb-4 text-center relative inline-block after:content-[''] after:block after:w-16 after:h-1 after:bg-orange-600 after:mt-2 after:mx-auto">
           Our Menu
@@ -106,7 +106,6 @@ const FoodMenu = () => {
           .filter((item) => (menu === "All" ? true : item.category === menu))
           .map((item) => (
             <MenuItem
-              key={item.id}
               id={item.id}
               name={item.name}
               image={item.image}

@@ -1,6 +1,7 @@
 import FoodMenu from "@/Components/Client/FoodMenu";
 import Header from "@/Components/Client/Header";
 import Nav from "@/Components/Client/Nav";
+import Services from "@/Components/Client/Services";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Nav />
       <Header />
       <FoodMenu />
+      <Services />
     </div>
   );
 }

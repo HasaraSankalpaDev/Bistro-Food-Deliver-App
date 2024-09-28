@@ -18,7 +18,7 @@ const Nav = () => {
             Menu
           </li>
           <li className="list-none text-[18px] cursor-pointer hover:text-orange-500 transition">
-            About Us
+            Services
           </li>
           <li className="list-none text-[18px] cursor-pointer hover:text-orange-500 transition">
             Order

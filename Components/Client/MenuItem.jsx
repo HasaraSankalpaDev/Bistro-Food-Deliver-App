@@ -2,9 +2,12 @@
 import { assets } from "@/Assets/assets";
 import Image from "next/image";
 import React from "react";
-function MenuItem({ key, id, name, image, description, category, price }) {
+function MenuItem({ id, name, image, description, category, price }) {
   return (
-    <div className="card bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-102 hover:shadow-2xl relative">
+    <div
+      key={id + name}
+      className="card bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-102 hover:shadow-2xl relative"
+    >
       <div className="px-6 py-0">
         <Image src={image} className="w-full h-full" alt="Chicken Burger" />
 
