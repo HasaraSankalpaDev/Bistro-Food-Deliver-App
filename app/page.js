@@ -1,3 +1,4 @@
+import ContactUs from "@/Components/Client/ContactUs";
 import FoodMenu from "@/Components/Client/FoodMenu";
 import Header from "@/Components/Client/Header";
 import Nav from "@/Components/Client/Nav";
@@ -10,6 +11,7 @@ export default function Home() {
       <Header />
       <FoodMenu />
       <Services />
+      <ContactUs />
     </div>
   );
 }
