@@ -1,10 +1,11 @@
 "use client";
 
-import { assets } from "@/Assets/assets"; // Ensure this import is correct
+// import { assets } from "../../Assets/assets"; // Ensure this import is correct
 import Image from "next/image";
 import React, { useState } from "react";
-import food_items from "@/Assets/assets"; // Ensure this is correctly imported
+// import food_items from "@/Assets/assets"; // Ensure this is correctly imported
 import MenuItem from "./MenuItem";
+import food_items, { assets } from "@/Components/Assets/assets";
 
 const FoodMenu = () => {
   const [menu, setMenu] = useState("All");

@@ -1,12 +1,11 @@
 "use client";
-import { assets } from "@/Assets/assets";
 import Image from "next/image";
 import React from "react";
 function MenuItem({ id, name, image, description, category, price }) {
   return (
     <div
       key={id + name}
-      className="card bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-102 hover:shadow-2xl relative"
+      className="card bg-gray-200 border shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-102 hover:shadow-2xl relative"
     >
       <div className="px-6 py-0">
         <Image src={image} className="w-full h-full" alt="Chicken Burger" />
@@ -42,7 +41,7 @@ function MenuItem({ id, name, image, description, category, price }) {
           <div className="flex w-full h-full align-middle justify-between">
             <button
               href="#"
-              className="text-white w-full bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-0 mb-3"
+              className="text-white w-full bg-gray-800 hover:bg-gray-900 px-4 py-2 rounded-0 mb-3"
             >
               Order Now
             </button>

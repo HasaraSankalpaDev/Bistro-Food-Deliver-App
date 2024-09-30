@@ -29,7 +29,7 @@ const ContactUs = () => {
         />
         <button
           type="submit"
-          className="mt-6 w-full sm:w-[500px] py-3 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition duration-200"
+          className="mt-6 w-full sm:w-[500px] py-3 bg-gray-800 text-white rounded-md hover:bg-gray-900 transition duration-200"
         >
           Submit
         </button>
