@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true, // Make sure this is set to required
   },
+  type: { type: String, required: true },
 });
 
 // Check if the model already exists, then use it. Otherwise, create a new model.
