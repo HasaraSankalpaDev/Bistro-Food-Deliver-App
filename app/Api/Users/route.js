@@ -43,14 +43,15 @@ export async function POST(request) {
   await connectDB();
 
   try {
-    // Parse the request body as JSON
-    const userData = await request.json();
+    // If you are sending data as JSON
+    const userData = await request.json(); // Parse the request body as JSON
 
-    // Construct the user data, ensuring that userType is optional
+    // Construct the user data
     const usersData = {
       name: userData.name, // Access the fields directly from userData
       email: userData.email,
-      password: userData.password,
+      password: userData.password, // Ensure password is passed
+      type: "user", // Default to 'user' if userType is not provided
     };
 
     // Save the user data to the database
@@ -63,13 +64,10 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("Error creating user:", error);
-
-    // More detailed error messages
-    const errorMsg = error.errors?.password?.message || "Failed to create user";
-
     return NextResponse.json({
       success: false,
-      msg: errorMsg,
+      msg: "Failed to create user",
+      error: error.message,
     });
   }
 }

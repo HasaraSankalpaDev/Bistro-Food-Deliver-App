@@ -1,14 +1,50 @@
-import React from "react";
-import { RiCloseLargeFill } from "react-icons/ri";
+import axios from "axios";
+import React, { useState } from "react";
+import { RiCloseFill } from "react-icons/ri";
 
 function SignUpForm({ onClose, onLoginOpen }) {
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    type: "user",
+  });
+
+  // OnChange Handler
+  const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Submit Handler
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    console.log(data);
+
+    try {
+      const response = await axios.post("/Api/Users", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        type: data.type,
+      }); // Check API path
+      console.log("Success:", response.data);
+      // You can add a success message or redirect here
+    } catch (error) {
+      console.error(
+        "Error:",
+        error.response ? error.response.data : error.message
+      );
+      // Handle the error (e.g., show an error message to the user)
+    }
+  };
+
   return (
     <div>
-      {" "}
       <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-20">
         <div className="bg-white rounded-lg w-6/12 md:w-6/12 relative px-8 py-6">
           <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
-          <form>
+          <form onSubmit={onSubmit}>
             <div className="mb-4">
               <label className="block text-sm font-medium mb-3">
                 Your Name:
@@ -18,6 +54,9 @@ function SignUpForm({ onClose, onLoginOpen }) {
                 className="w-full border border-gray-300 p-3"
                 placeholder="Enter Name"
                 required
+                onChange={onChangeHandler}
+                value={data.name}
+                name="name"
               />
             </div>
             <div className="mb-4">
@@ -29,6 +68,9 @@ function SignUpForm({ onClose, onLoginOpen }) {
                 className="w-full border border-gray-300 p-3"
                 placeholder="Enter Email Address"
                 required
+                onChange={onChangeHandler}
+                name="email"
+                value={data.email}
               />
             </div>
             <div className="mb-4">
@@ -40,6 +82,9 @@ function SignUpForm({ onClose, onLoginOpen }) {
                 className="w-full border border-gray-300 p-3"
                 placeholder="Enter Your Password"
                 required
+                onChange={onChangeHandler}
+                name="password"
+                value={data.password}
               />
             </div>
 
@@ -76,7 +121,8 @@ function SignUpForm({ onClose, onLoginOpen }) {
             onClick={onClose}
             className="absolute top-4 right-2 text-gray-600 hover:text-gray-900"
           >
-            <RiCloseLargeFill className="mr-5 w-[20px] h-[20px]" />
+            <RiCloseFill className="mr-5 w-[20px] h-[20px]" />{" "}
+            {/* Correct icon */}
           </button>
         </div>
       </div>
