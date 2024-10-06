@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-function MenuItem({ id, name, image, description, category, price }) {
+function MenuItem({ key, id, name, image, description, category, price }) {
   return (
     <div
-      key={id + name}
+      key={key}
       className="card bg-gray-200 border shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-102 hover:shadow-2xl relative"
     >
-      <div className="px-6 py-0">
+      <div className="px-6 py-0" key={key}>
         <Image src={image} className="w-full h-full" alt="Chicken Burger" />
 
         <div className="p-5">
