@@ -1,0 +1,10 @@
+.image-container {
+  columns: 3 220px;
+  gap: 15px;
+}
+
+.image-container img {
+  margin-bottom: 10px;
+  border-radius: 5px;
+  width: 100%;
+}

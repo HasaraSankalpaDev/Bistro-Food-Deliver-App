@@ -107,6 +107,7 @@ const FoodMenu = () => {
           .filter((item) => (menu === "All" ? true : item.category === menu))
           .map((item) => (
             <MenuItem
+              key={item.id}
               id={item.id}
               name={item.name}
               image={item.image}
