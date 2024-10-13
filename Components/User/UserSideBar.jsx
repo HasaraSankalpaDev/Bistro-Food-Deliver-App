@@ -8,7 +8,7 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { SiBitcoincash } from "react-icons/si";
 import { FiLogOut } from "react-icons/fi";
 
-const Sidebar = () => {
+const Sidebar = ({ id }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const toggleSidebar = () => {
@@ -46,7 +46,7 @@ const Sidebar = () => {
         <ul className="mt-12 w-full">
           <li className="group w-full my-8">
             <Link
-              href="/Admin/Dashboard"
+              href={`/User?${id}`}
               className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
             >
               <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
@@ -61,57 +61,24 @@ const Sidebar = () => {
               </span>
             </Link>
           </li>
-          <li className="group w-full my-8">
+          <li>
             <Link
-              href="/Admin/Users"
+              href={`/User/MyOrders`}
               className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
             >
               <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
-                <FaRegUser />
+                <FiHome />
               </span>
               <span
                 className={`text-sm font-medium ${
                   isCollapsed ? "hidden" : "inline-block"
                 } duration-300`}
               >
-                Users
+                My Orders
               </span>
             </Link>
           </li>
-          <li className="group w-full my-8">
-            <Link
-              href="/Admin/Foods"
-              className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
-            >
-              <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
-                <IoFastFoodOutline />
-              </span>
-              <span
-                className={`text-sm font-medium ${
-                  isCollapsed ? "hidden" : "inline-block"
-                } duration-300`}
-              >
-                Fooods
-              </span>
-            </Link>
-          </li>
-          <li className="group w-full my-8">
-            <Link
-              href="/Admin/Economy"
-              className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
-            >
-              <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
-                <SiBitcoincash />
-              </span>
-              <span
-                className={`text-sm font-medium ${
-                  isCollapsed ? "hidden" : "inline-block"
-                } duration-300`}
-              >
-                Economy
-              </span>
-            </Link>
-          </li>
+
           <li className="group w-full my-8 bottom-0 absolute">
             <Link
               href="/dashboard"

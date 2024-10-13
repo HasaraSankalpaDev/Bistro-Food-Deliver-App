@@ -1,12 +1,12 @@
 import Link from "next/link";
 import React from "react";
 
-function NavLinks({ navLink, handleNavLinkClick }) {
+function NavLinks({ navLink, handleNavLinkClick, id }) {
   return (
     <div className="gap-8 space-x-6">
       {" "}
       <Link
-        href="/"
+        href={`/?${id}`}
         onClick={() => handleNavLinkClick("home")}
         className={
           navLink === "home"
@@ -17,7 +17,7 @@ function NavLinks({ navLink, handleNavLinkClick }) {
         Home
       </Link>
       <Link
-        href="/pages/menu"
+        href={`/pages/menu?${id}`}
         onClick={() => handleNavLinkClick("menu")}
         className={
           navLink === "menu"
@@ -28,7 +28,7 @@ function NavLinks({ navLink, handleNavLinkClick }) {
         Menu
       </Link>
       <Link
-        href="/pages/order"
+        href={`/pages/order?${id}`}
         onClick={() => handleNavLinkClick("order")}
         className={
           navLink === "order"
@@ -39,7 +39,7 @@ function NavLinks({ navLink, handleNavLinkClick }) {
         Order
       </Link>
       <Link
-        href="/pages/gallery"
+        href={`/pages/gallery?${id}`}
         onClick={() => handleNavLinkClick("gallery")}
         className={
           navLink === "gallery"
@@ -50,7 +50,7 @@ function NavLinks({ navLink, handleNavLinkClick }) {
         Gallery
       </Link>
       <Link
-        href="/pages/contact"
+        href={`/pages/contact?${id}`}
         onClick={() => handleNavLinkClick("contact")}
         className={
           navLink === "contact"

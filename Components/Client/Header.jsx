@@ -7,7 +7,7 @@ const Header = () => {
       <div className="container">
         <div className="header-content w-[500px] mt-20">
           <h1 className="header-heading  text-white text-6xl capitalize mt-5 mb-5">
-            <span className="text-orange-600">Fresh & Healthy</span> Foods
+            <span className="text-orange-600">Fresh & Healthy Foods</span>
           </h1>
           <p className="text-gray-300 mb-5 text-xl ">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.

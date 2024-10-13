@@ -22,13 +22,15 @@ function SignUpForm({ onClose, onLoginOpen }) {
     console.log(data);
 
     try {
-      const response = await axios.post("/Api/Users", {
+      const response = await axios.post("/Api/register", {
         name: data.name,
         email: data.email,
         password: data.password,
         type: data.type,
       }); // Check API path
       console.log("Success:", response.data);
+
+      onLoginOpen(true);
       // You can add a success message or redirect here
     } catch (error) {
       console.error(

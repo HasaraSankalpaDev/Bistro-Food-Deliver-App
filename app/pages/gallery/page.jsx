@@ -8,6 +8,12 @@ import Footer from "@/Components/Components/Client/Footer";
 // pages/menu.js
 const page = () => {
   const [images, setImages] = useState();
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const id = localStorage.getItem("userId");
+    setUserId(id);
+  }, []);
 
   const galleryImages = [
     "https://plus.unsplash.com/premium_photo-1681406994530-3de7406c21a5?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -24,6 +30,7 @@ const page = () => {
       <Nav />
       <div className="px-5 mt-10 py-20 md:px-12 lg:px-28 text-black ">
         <h1 className="text-4xl font-semibold mb-5 ">Our Gallery</h1>
+        {userId}
         <p className="text-[16px] text-gray-800">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla quis
           est deleniti id iure maiores impedit corrupti neque. Fugiat quidem

@@ -1,3 +1,4 @@
+"use client";
 import ContactUs from "../Components/Client/ContactUs";
 import FoodMenu from "../Components/Client/FoodMenu";
 import Footer from "../Components/Client/Footer";
