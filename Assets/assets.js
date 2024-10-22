@@ -24,6 +24,7 @@ export const assets = {
 const food_items = [
   {
     id: 1,
+    key: 1,
     name: "Chicken Salad",
     short_description: "psum ipsum clita erat amet dolor justo diam",
     description:
@@ -34,6 +35,8 @@ const food_items = [
   },
   {
     id: 2,
+    key: 2,
+
     name: "Ice Cream Desert",
     short_description: "psum ipsum clita erat amet dolor justo diam",
     description:
@@ -44,6 +47,8 @@ const food_items = [
   },
   {
     id: 3,
+    key: 3,
+
     name: "Chicken Sandwitch",
     short_description: "psum ipsum clita erat amet dolor justo diam",
     description:
@@ -54,6 +59,8 @@ const food_items = [
   },
   {
     id: 4,
+    key: 4,
+
     name: "Chicken Pizza",
     short_description: "psum ipsum clita erat amet dolor justo diam",
     description:
@@ -64,6 +71,8 @@ const food_items = [
   },
   {
     id: 5,
+    key: 5,
+
     name: "Chicken Pizza",
     short_description: "psum ipsum clita erat amet dolor justo diam",
     description:
@@ -74,6 +83,8 @@ const food_items = [
   },
   {
     id: 6,
+    key: 6,
+
     name: "Chicken Noodles",
     short_description: "psum ipsum clita erat amet dolor justo diam",
     description:

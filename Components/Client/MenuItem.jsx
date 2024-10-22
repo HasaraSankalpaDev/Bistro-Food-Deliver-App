@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-function MenuItem({ key, id, name, image, description, category, price }) {
+function MenuItem({  id,key, name, image, description, category, price }) {
   return (
     <div
       key={key}
