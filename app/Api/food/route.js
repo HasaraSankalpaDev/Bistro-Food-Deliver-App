@@ -68,3 +68,14 @@ export async function POST(request) {
     return NextResponse.json({ success: false, msg: "Invalid image format" });
   }
 }
+
+// API Endpoint to Delete Blog
+
+export async function DELETE(request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  const food = await foodModel.findById(id);
+  await foodModel.findByIdAndDelete(id);
+  return NextResponse.json({ msg: "Food Item Deleted" });
+}

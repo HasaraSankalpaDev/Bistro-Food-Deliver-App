@@ -14,9 +14,9 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`flex h-screen ${
+      className={`flex h-screen sticky fixed top-0 left-0 overflow-y-hidden ${
         isCollapsed ? "w-20" : "w-96"
-      } duration-300 bg-gray-800 relative`}
+      } duration-300 bg-gray-800 relative  overflow-y-hidden`}
     >
       {/* Sidebar Content */}
       <div className="relative w-full flex flex-col items-center align-middle h-full">
