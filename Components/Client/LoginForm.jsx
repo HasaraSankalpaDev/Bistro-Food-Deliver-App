@@ -4,6 +4,10 @@ import { RiCloseFill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 
 function LoginForm({ onClose, onOpen }) {
+  // Creating User ID
+  // const searchParams = useSearchParams();
+  // const id = searchParams.get("id");
+
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -30,7 +34,10 @@ function LoginForm({ onClose, onOpen }) {
       if (response.data.msg === "user found") {
         console.log("User found");
         const uId = response.data.user._id;
-        router.push(`/User?id=${uId}`); // Navigate to admin panel with user ID
+        // router.push(`/User?id=${uId}`); // Navigate to admin panel with user ID
+        router.push("http://localhost:3000");
+        saveUserId(uId);
+        window.location.reload();
       } else if (response.data.msg === "admin found") {
         console.log("Admin found");
         const uId = response.data.user._id;
@@ -40,6 +47,13 @@ function LoginForm({ onClose, onOpen }) {
       }
     } catch (err) {
       console.log("Error:", err);
+    }
+  };
+
+  // Create UserId Variable
+  const saveUserId = (id) => {
+    if (id) {
+      localStorage.setItem("userId", id); // Store the user ID in local storage
     }
   };
 

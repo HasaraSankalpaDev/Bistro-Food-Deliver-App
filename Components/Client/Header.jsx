@@ -1,13 +1,15 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import "./ClientComponents.css";
-
 const Header = () => {
   return (
     <header className="mt-20 px-5 py-40 pt-6 md:px-12 lg:px-28 header">
       <div className="container">
         <div className="header-content w-[500px] mt-20">
           <h1 className="header-heading  text-white text-6xl capitalize mt-5 mb-5">
-            <span className="text-orange-600">Fresh & Healthy Foods</span>
+            <span className="text-orange-600">
+              Fresh & Healthy Foods {userId}
+            </span>
           </h1>
           <p className="text-gray-300 mb-5 text-xl ">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
