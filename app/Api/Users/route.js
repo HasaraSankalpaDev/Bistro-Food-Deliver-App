@@ -71,3 +71,14 @@ export async function POST(request) {
     });
   }
 }
+
+// API Endpoint to Delete User
+
+export async function DELETE(request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  const user = await UserModel.findById(id);
+  await UserModel.findByIdAndDelete(id);
+  return NextResponse.json({ msg: "User  Deleted" });
+}

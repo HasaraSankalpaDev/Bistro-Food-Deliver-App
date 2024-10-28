@@ -14,6 +14,8 @@ const Page = () => {
     itemImage: "",
   });
 
+  console.log(data);
+
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
@@ -118,12 +120,13 @@ const Page = () => {
               onChange={onChangeHandler}
               value={data.itemCategory}
             >
-              <option value="Salads">Salads</option>
+              <option value="">Select a category</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
               <option value="Desserts">Desserts</option>
-              <option value="Sandwiches">Sandwiches</option>
-              <option value="Cakes">Cakes</option>
-              <option value="Juice">Juice</option>
-              <option value="Noodles">Noodles</option>
+              <option value="Drinks & Tea">Drinks & Tea</option>
+              <option value="Wine Card">Wine Card</option>
             </select>
           </div>
 
