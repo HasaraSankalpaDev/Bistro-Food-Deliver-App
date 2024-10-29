@@ -69,7 +69,7 @@ export async function POST(request) {
   }
 }
 
-// API Endpoint to Delete Blog
+// API Endpoint to Delete Food
 
 export async function DELETE(request) {
   const { searchParams } = new URL(request.url);

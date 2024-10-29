@@ -55,3 +55,14 @@ export async function POST(request) {
     });
   }
 }
+
+// API Endpoint to Delete Message
+
+export async function DELETE(request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  const message = await ContactModel.findById(id);
+  await ContactModel.findByIdAndDelete(id);
+  return NextResponse.json({ msg: "Message Deleted" });
+}

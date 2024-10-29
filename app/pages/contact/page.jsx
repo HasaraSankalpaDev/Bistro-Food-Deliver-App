@@ -7,6 +7,9 @@ import { FaDirections } from "react-icons/fa";
 import Footer from "@/Components/Components/Client/Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // pages/menu.js
 const page = () => {
@@ -32,19 +35,21 @@ const page = () => {
         name: data.name,
         email: data.email,
         message: data.message,
-      }); // Check API path
+      });
+      if (response) {
+        toast.success("Message Sended Successfully!");
+      }
       console.log("Success:", response.data);
     } catch (error) {
-      console.error(
-        "Error:",
-        error.response ? error.response.data : error.message
-      );
+      toast.error("Error Occurred, Please Try Again Later");
     }
   };
 
   return (
     <div>
       <Nav />
+      <ToastContainer theme="dark" />
+
       <div className="px-5 mt-10 py-20 md:px-12 lg:px-28 text-black ">
         <h1 className="text-4xl font-semibold mb-5 ">Contact Us</h1>
         <p className="text-[16px] text-gray-800">

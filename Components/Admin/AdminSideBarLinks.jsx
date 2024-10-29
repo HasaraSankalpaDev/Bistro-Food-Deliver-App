@@ -6,6 +6,7 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { SiBitcoincash } from "react-icons/si";
 import { FiLogOut } from "react-icons/fi";
 import { MdAddTask } from "react-icons/md";
+import { BiMessageAltCheck } from "react-icons/bi";
 
 const AdminSideBarLinks = ({ isCollapsed }) => {
   return (
@@ -75,6 +76,23 @@ const AdminSideBarLinks = ({ isCollapsed }) => {
             } duration-300`}
           >
             Add Food
+          </span>
+        </Link>
+      </li>
+      <li className="group w-full my-8">
+        <Link
+          href="/Admin/ContactMessages"
+          className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
+        >
+          <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
+            <BiMessageAltCheck />
+          </span>
+          <span
+            className={`text-sm font-medium ${
+              isCollapsed ? "hidden" : "inline-block"
+            } duration-300`}
+          >
+            Messages
           </span>
         </Link>
       </li>
