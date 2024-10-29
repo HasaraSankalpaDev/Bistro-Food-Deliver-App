@@ -26,36 +26,29 @@ export async function POST(request) {
     // Log incoming user data to check its structure
     console.log("Contact Details:", contactData);
 
-    // Validate the user data exists
-    if (
-      !contactData.userId ||
-      !contactData.name ||
-      !contactData.email ||
-      !contactData.massage
-    ) {
+    // Validate that required fields are provided
+    if (!contactData.name || !contactData.email || !contactData.message) {
       return NextResponse.json({
         success: false,
-        msg: "Name, email, and password are required fields.",
+        msg: "Name, email, and message are required fields.",
       });
     }
 
     const contactsData = {
-      userId: contactData.userId,
       name: contactData.name,
       email: contactData.email,
-      massage: contactData.massage,
+      message: contactData.message, // Changed 'massage' to 'message' here
     };
 
     await ContactModel.create(contactsData);
-    console.log("Contact Daved");
 
     return NextResponse.json({
       success: true,
-      msg: "Contact Saved",
+      msg: "Your message was sent successfully!",
     });
   } catch (error) {
     console.error("Error Saving:", error);
-    const errorMsg = error.errors?.password?.message || "Failed to create user";
+    const errorMsg = error.errors?.message?.message || "Failed to send message";
     return NextResponse.json({
       success: false,
       msg: errorMsg,
