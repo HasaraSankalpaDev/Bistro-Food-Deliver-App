@@ -9,6 +9,10 @@ import drinck_01 from "./drink-2.png";
 import dilivery_01 from "./step-2.png";
 import dilivery_02 from "./cat-2.png";
 import dilivery_03 from "./cat-1.png";
+import team_01 from "./team-1.jpg";
+import team_02 from "./team-2.jpg";
+import team_03 from "./team-3.jpg";
+import team_04 from "./team-4.jpg";
 
 // Exporting assets
 export const assets = {
@@ -18,6 +22,10 @@ export const assets = {
   dilivery_01,
   dilivery_02,
   dilivery_03,
+  team_01,
+  team_02,
+  team_03,
+  team_04,
 };
 
 // Defining food items

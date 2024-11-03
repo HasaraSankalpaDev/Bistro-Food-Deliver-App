@@ -17,7 +17,7 @@ const MenuItem = ({
   const [userName, setUserName] = useState();
 
   const openErrorToast = () => {
-    toast.error("Please Sign in to Place Order!");
+    toast.error("Please Sign in to Add Item!");
   };
 
   // Fetch User
@@ -51,7 +51,7 @@ const MenuItem = ({
           userId: userId,
           foodId: id,
         });
-        toast.success("Your Order Placed Succesfully!");
+        toast.success("Item Added Succesfully!");
       } catch (error) {
         console.error("Error placing order:", error);
       }
@@ -109,7 +109,7 @@ const MenuItem = ({
               onClick={handleOrder}
               className="text-white w-full bg-gray-800 hover:bg-gray-900 px-4 py-2 rounded-0 mb-3"
             >
-              Order Now
+              Add To Cart
             </button>
           ) : (
             <button
@@ -117,7 +117,7 @@ const MenuItem = ({
               onClick={openErrorToast}
               className="text-white w-full bg-gray-800 hover:bg-gray-900 px-4 py-2 rounded-0 mb-3"
             >
-              Order Now
+              Add To Cart
             </button>
           )}
         </div>

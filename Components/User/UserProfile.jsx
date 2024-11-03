@@ -27,6 +27,7 @@ const UserProfile = () => {
         setUser(response.data.user);
         setName(name);
         setEmail(email);
+        setPassword(password);
         // Do not set the password for security reasons
       } else {
         console.error("Failed to fetch user data");
@@ -53,7 +54,7 @@ const UserProfile = () => {
           <p className="text-medium text-gray-600 my-3">
             Your profile information is below:
           </p>
-          <form className="-mt-10">
+          <form className="mt-10">
             <div className="mb-4">
               <label className="block text-sm font-medium mb-3">
                 Your Name:

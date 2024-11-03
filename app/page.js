@@ -8,6 +8,7 @@ import Services from "../Components/Client/Services";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import OurTeam from "../Components/Client/OurTeam";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Header />
       <FoodMenu />
       <Services />
+      <OurTeam />
       <ContactUs />
       <Footer />
       <ToastContainer theme="dark" position="top-right" />
