@@ -5,11 +5,15 @@ import food_items, { assets } from "@/Components/Assets/assets";
 import MenuItem from "@/Components/Components/Client/MenuItem";
 import Footer from "@/Components/Components/Client/Footer";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // pages/menu.js
 const page = () => {
   const [menu, setMenu] = useState("All");
   const [foods, setFoods] = useState([]); // You might not need this state if it's not being used
+  const [userId, setUserId] = useState(null);
 
   const items = Array.isArray(food_items) ? food_items : [];
 
@@ -29,6 +33,11 @@ const page = () => {
       setFoods([]); // Set to empty array in case of error
     }
   };
+  // Fetch UserID
+  useEffect(() => {
+    const id = localStorage.getItem("userId");
+    setUserId(id);
+  }, []);
 
   useEffect(() => {
     fetchAllItems();
@@ -37,6 +46,7 @@ const page = () => {
   return (
     <div>
       <Nav />
+      <ToastContainer theme="dark" />+
       <div className="px-5 mt-10 py-20 md:px-12 lg:px-28 text-black ">
         <h1 className="text-4xl font-semibold mb-5 ">Our Menu</h1>
         <p className="text-[16px] text-gray-800">
@@ -131,6 +141,7 @@ const page = () => {
                 <MenuItem
                   id={item._id}
                   key={item._id}
+                  userId={userId}
                   name={item.itemName}
                   image={item.itemImage}
                   description={item.itemDescription}

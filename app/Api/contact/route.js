@@ -1,19 +1,18 @@
 import ContactModel from "@/Components/Lib/Models/ContactModel";
 import { NextResponse } from "next/server";
 import { connectDB } from "@/Components/Lib/Config/Db.config";
-
-// Contacts Listing Api Endpoint
+// Contacts Listing API Endpoint
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const contactId = searchParams.get("id");
 
   if (contactId) {
-    const massage = await ContactModel.findById(contactId);
-    return NextResponse.json({ massage });
+    const message = await ContactModel.findById(contactId);
+    return NextResponse.json({ message });
   } else {
-    const massage = await ContactModel.find({});
-    return NextResponse.json({ msg: "massage Found", massage });
+    const messages = await ContactModel.find({});
+    return NextResponse.json({ msg: "Messages found", messages });
   }
 }
 

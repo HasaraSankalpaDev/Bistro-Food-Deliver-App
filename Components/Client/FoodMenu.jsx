@@ -10,9 +10,9 @@ import axios from "axios";
 
 const FoodMenu = () => {
   const [menu, setMenu] = useState("All");
-  const [foods, setFoods] = useState([]); // You might not need this state if it's not being used
+  const [foods, setFoods] = useState([]);
+  const [userId, setUserId] = useState(null);
 
-  // Log food_items to check its value
   console.log(food_items[2]);
 
   // Fetch All Items
@@ -34,6 +34,8 @@ const FoodMenu = () => {
 
   useEffect(() => {
     fetchAllItems();
+    const id = localStorage.getItem("userId");
+    setUserId(id);
   }, []);
 
   return (
@@ -131,6 +133,7 @@ const FoodMenu = () => {
             <MenuItem
               id={item._id}
               key={item._id}
+              userId={userId}
               name={item.itemName}
               image={item.itemImage}
               description={item.itemDescription}

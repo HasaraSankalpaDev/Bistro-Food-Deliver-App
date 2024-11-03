@@ -9,6 +9,8 @@ import { connectDB } from "@/Components/Lib/Config/Db.config";
 // Foods Listing Api Endpoint
 
 export async function GET(request) {
+  await connectDB();
+
   const { searchParams } = new URL(request.url);
   const foodId = searchParams.get("id");
 
@@ -72,6 +74,8 @@ export async function POST(request) {
 // API Endpoint to Delete Food
 
 export async function DELETE(request) {
+  await connectDB();
+
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 

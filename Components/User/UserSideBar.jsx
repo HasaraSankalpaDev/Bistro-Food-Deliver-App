@@ -1,105 +1,67 @@
 "use client";
-import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { FiHome } from "react-icons/fi";
-import { FaRegUser } from "react-icons/fa";
-import { IoFastFoodOutline } from "react-icons/io5";
-import { SiBitcoincash } from "react-icons/si";
-import { FiLogOut } from "react-icons/fi";
+import React, { useState } from "react";
 
-const Sidebar = ({ id }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
+const SideBar = () => {
+  const [menu, setMenu] = useState("profile");
+  console.log(menu);
   return (
-    <div
-      className={`flex h-screen ${
-        isCollapsed ? "w-20" : "w-96"
-      } duration-300 bg-gray-800 relative`}
-    >
-      {/* Sidebar Content */}
-      <div className="relative w-full flex flex-col items-center align-middle h-full">
-        {/* Sidebar Items */}
-        <button
-          onClick={toggleSidebar}
-          className="flex items-center justify-between p-4 text-white w-full duration-300 mt-5"
-        >
-          <span
-            className={`text-xl font-medium ${
-              isCollapsed ? "hidden" : "inline-block"
-            } duration-300`}
+    <div className="flex flex-col mt-20">
+      <div className="w-5 sm:w-80 h-[80vh] py-12 relative border-r-2 border-gray-300">
+        <div className="w-[90%] sm:w-[80%] absolute right-0 ">
+          <Link
+            href="/User/Profile"
+            className={
+              menu === "profile"
+                ? "flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 bg-orange-500 text-white text-center rounded-lg mb-5"
+                : "flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 bg-white text-dark text-center rounded-lg mb-5"
+            }
+            onClick={() => setMenu("profile")}
           >
-            Bistro.
-          </span>
-          <span className="inline-block mr-4 group-hover:scale-110 duration-300">
-            {isCollapsed ? (
-              <GiHamburgerMenu className="w-[22px] h-[22px]" />
-            ) : (
-              <GiHamburgerMenu className="w-[22px] h-[22px]" />
-            )}
-          </span>
-        </button>
-        <ul className="mt-12 w-full">
-          <li className="group w-full my-8">
-            <Link
-              href={`/User?${id}`}
-              className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
-            >
-              <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
-                <FiHome />
-              </span>
-              <span
-                className={`text-sm font-medium ${
-                  isCollapsed ? "hidden" : "inline-block"
-                } duration-300`}
-              >
-                Dashboard
-              </span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href={`/User/MyOrders`}
-              className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
-            >
-              <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
-                <FiHome />
-              </span>
-              <span
-                className={`text-sm font-medium ${
-                  isCollapsed ? "hidden" : "inline-block"
-                } duration-300`}
-              >
-                My Orders
-              </span>
-            </Link>
-          </li>
-
-          <li className="group w-full my-8 bottom-0 absolute">
-            <Link
-              href="/dashboard"
-              className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
-            >
-              <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
-                <FiLogOut />
-              </span>
-              <span
-                className={`text-sm font-medium ${
-                  isCollapsed ? "hidden" : "inline-block"
-                } duration-300`}
-              >
-                Log Out
-              </span>
-            </Link>
-          </li>
-        </ul>
+            {/* <Image src={assets.add_icon} alt="" width={28} /> */}
+            <p>Profile</p>
+          </Link>
+          <Link
+            href="/User/Orders"
+            className={
+              menu === "orders"
+                ? "flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 bg-orange-500 text-white text-center rounded-lg mb-5"
+                : "flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 bg-white text-dark text-center rounded-lg mb-5"
+            }
+            onClick={() => setMenu("orders")}
+          >
+            {/* <Image src={assets.add_icon} alt="" width={28} /> */}
+            <p>My Orders</p>
+          </Link>
+          <Link
+            href="/User/CartItems"
+            className={
+              menu === "cartItems"
+                ? "flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 bg-orange-500 text-white text-center rounded-lg mb-5"
+                : "flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 bg-white text-dark text-center rounded-lg mb-5"
+            }
+            onClick={() => setMenu("cartItems")}
+          >
+            {/* <Image src={assets.add_icon} alt="" width={28} /> */}
+            <p>Cart Items</p>
+          </Link>
+          <Link
+            href="/"
+            className={
+              menu === "favorites"
+                ? "flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 bg-orange-500 text-white text-center rounded-lg mb-5"
+                : "flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 bg-white text-dark text-center rounded-lg mb-5"
+            }
+            onClick={() => setMenu("favorites")}
+          >
+            {/* <Image src={assets.add_icon} alt="" width={28} /> */}
+            <p>Favorites</p>
+          </Link>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Sidebar;
+export default SideBar;

@@ -28,7 +28,7 @@ const UserProfile = ({ id }) => {
   }, []);
   return (
     <div>
-      <div className="bg-gray-100 my-10 px-8 py-8 rounded-lg shadow-lg ">
+      <div className="bg-gray-100 my-10  px-8 py-8 rounded-lg shadow-lg ">
         <h1 className="text-2xl font-bold border-b border-gray-300 pb-3 mb-4 text-gray-700">
           Hello {name}
         </h1>

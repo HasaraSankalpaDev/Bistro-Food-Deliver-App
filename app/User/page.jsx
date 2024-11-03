@@ -1,24 +1,19 @@
 "use client"; // Make sure it's a client component
 
-import React, { useEffect } from "react";
-import { useSearchParams } from "next/navigation"; // Use this instead of useRouter
-import UserProfile from "@/Components/Components/User/UserProfile";
+import React from "react";
 
-const AdminPage = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-
-  useEffect(() => {
-    if (id) {
-      localStorage.setItem("userId", id); // Store the user ID in local storage
-    }
-  }, [id]);
-
+const page = () => {
   return (
     <div>
-      <UserProfile id={id} />
+      <p className="mt-36">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam
+        ducimus ipsum placeat enim ad minus totam, natus ea autem cum maxime
+        illo nemo qui eveniet magnam, dolores voluptates optio iusto labore
+        provident aspernatur. Quam laboriosam sapiente earum voluptatum,
+        voluptates at.
+      </p>
     </div>
   );
 };
 
-export default AdminPage;
+export default page;
