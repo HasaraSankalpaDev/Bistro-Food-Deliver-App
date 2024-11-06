@@ -9,3 +9,84 @@
   background-size: cover;
   background-blend-mode: multiply;
 }
+
+/* ## Food Items ## */
+.food-item {
+  width: 100%;
+  margin: auto;
+  border-radius: 15px;
+}
+.food-item-image {
+  width: 100%;
+  border-radius: 15px 15px 0px 0px;
+}
+.food-item-info {
+  padding: 20px;
+}
+.food-item-name-rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.food-item-name-rating {
+  font-size: 20px;
+  font-weight: 500;
+}
+.food-item-dec {
+  font-size: 15px;
+}
+.food-item-price {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 8px 5px;
+}
+/* .food-item-img-container {
+  position: relative;
+}
+.food-item-img-container.add {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: #fff;
+} */
+.food-item-img-container {
+  position: relative;
+  width: 100%;
+}
+
+.food-item-image {
+  width: 100%;
+  height: auto;
+}
+
+.add-icon {
+  font-size: 30px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%; /* Optional: Makes the icon circular */
+  padding: 5px; /* Optional: Adds padding for better spacing */
+  cursor: pointer;
+  cursor: pointer;
+}
+
+.food-item-counter {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px; /* Optional: Adds padding */
+  cursor: pointer;
+}
+.counter-icon-plus {
+  font-size: 20px;
+}
+.counter-icon-remove {
+  font-size: 20px;
+}
+.item-count {
+  font-size: 18px;
+}

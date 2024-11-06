@@ -30,7 +30,6 @@ const page = () => {
       <Nav />
       <div className="px-5 mt-10 py-20 md:px-12 lg:px-28 text-black ">
         <h1 className="text-4xl font-semibold mb-5 ">Our Gallery</h1>
-        {userId}
         <p className="text-[16px] text-gray-800">
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla quis
           est deleniti id iure maiores impedit corrupti neque. Fugiat quidem

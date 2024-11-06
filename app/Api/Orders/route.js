@@ -24,7 +24,13 @@ export async function POST(request) {
       userName: userOrderDetails.userName,
       userId: userOrderDetails.userId,
       foodId: userOrderDetails.foodId,
+      itemCount: Number(userOrderDetails.itemCount),
     };
+
+    if (!orderData.itemCount) {
+      console.error("Item count is missing or invalid");
+      return NextResponse.json({ success: false, msg: "Invalid item count" });
+    }
 
     // Save the blog data to the database
     await OrderModel.create(orderData);

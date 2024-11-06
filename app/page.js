@@ -5,10 +5,10 @@ import Footer from "../Components/Client/Footer";
 import Header from "../Components/Client/Header";
 import Nav from "../Components/Client/Nav";
 import Services from "../Components/Client/Services";
-import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OurTeam from "../Components/Client/OurTeam";
+import { CartProvider } from "../Lib/Context/CartContext";
 
 export default function Home() {
   return (
