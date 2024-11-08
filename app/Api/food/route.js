@@ -71,6 +71,77 @@ export async function POST(request) {
   }
 }
 
+// API Endpoint to Edit Food Details
+
+export async function PUT(request) {
+  try {
+    await connectDB();
+
+    // Parse FormData from the request
+    const formData = await request.formData();
+    const itemId = formData.get("itemId");
+    const itemName = formData.get("itemName");
+    const itemPrice = formData.get("itemPrice");
+    const itemDescription = formData.get("itemDescription");
+    const itemCategory = formData.get("itemCategory");
+    const itemImage = formData.get("itemImage"); // This will be a File object if provided
+
+    const timestamp = Date.now();
+
+    // Find the existing item in the database
+    const existingItem = await foodModel.findById(itemId);
+    if (!existingItem) {
+      return NextResponse.json({ success: false, msg: "Item not found" });
+    }
+
+    // Default to the existing image URL
+    let imgUrl = existingItem.itemImage;
+
+    if (itemImage && typeof itemImage.arrayBuffer === "function") {
+      // Convert image to arrayBuffer
+      const imageByteData = await itemImage.arrayBuffer();
+
+      // Create a buffer from the image data
+      const buffer = Buffer.from(imageByteData);
+
+      // Define path for saving the image
+      const path = `./public/${timestamp}_${itemImage.name}`;
+
+      // Write the image to the filesystem
+      await writeFile(path, buffer);
+
+      // Update imgUrl with new image path
+      imgUrl = `/${timestamp}_${itemImage.name}`;
+    }
+
+    // Construct the updated food data
+    const updatedData = {
+      itemName: itemName || existingItem.itemName,
+      itemPrice: itemPrice || existingItem.itemPrice,
+      itemDescription: itemDescription || existingItem.itemDescription,
+      itemCategory: itemCategory || existingItem.itemCategory,
+      itemImage: imgUrl,
+    };
+
+    // Update the food item in the database
+    await foodModel.findByIdAndUpdate(itemId, updatedData);
+
+    console.log("Food Item Updated Successfully");
+
+    return NextResponse.json({
+      success: true,
+      msg: "Food Item Updated",
+      imageUrl: imgUrl,
+    });
+  } catch (error) {
+    console.error("Error updating food item:", error);
+    return NextResponse.json({
+      success: false,
+      msg: "Failed to update food item",
+    });
+  }
+}
+
 // API Endpoint to Delete Food
 
 export async function DELETE(request) {

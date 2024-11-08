@@ -10,6 +10,7 @@ const Page = () => {
   const [foodItemId, setFoodItemId] = useState(null);
   const [orders, setOrders] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [fullTotal, setFullTotal] = useState(0);
 
   // Get User Name
   const fetchUserName = async () => {
@@ -107,6 +108,7 @@ const Page = () => {
                 <th className="py-3 px-6 text-left">Image</th>
                 <th className="py-3 px-6 text-left">Name</th>
                 <th className="py-3 px-6 text-left">Price</th>
+                <th className="py-3 px-6 text-left">Quantity</th>
                 <th className="py-3 px-6 text-left">Actions</th>
               </tr>
             </thead>
@@ -120,6 +122,8 @@ const Page = () => {
                     userName={order.userName}
                     userId={order.userId}
                     foodId={order.foodId}
+                    quantity={order.itemCount}
+                    setFullTotal={setFullTotal()}
                   />
                 ))
               ) : (

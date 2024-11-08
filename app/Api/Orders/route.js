@@ -24,24 +24,28 @@ export async function POST(request) {
       userName: userOrderDetails.userName,
       userId: userOrderDetails.userId,
       foodId: userOrderDetails.foodId,
-      itemCount: Number(userOrderDetails.itemCount),
+      itemCount: userOrderDetails.itemCount,
     };
 
-    if (!orderData.itemCount) {
+    if (!orderData.itemCount || isNaN(orderData.itemCount)) {
       console.error("Item count is missing or invalid");
       return NextResponse.json({ success: false, msg: "Invalid item count" });
     }
 
-    // Save the blog data to the database
+    // Save the order data to the database
     await OrderModel.create(orderData);
     console.log("Order Saved");
 
     return NextResponse.json({
       success: true,
-      msg: "Order Saved Succesfully",
+      msg: "Order Saved Successfully",
     });
   } catch (error) {
-    console.log(error);
+    console.error("Error saving order:", error);
+    return NextResponse.json({
+      success: false,
+      msg: "An error occurred while saving the order.",
+    });
   }
 }
 

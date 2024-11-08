@@ -5,10 +5,19 @@ import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
 
-const OrderTableItems = ({ userName, userId, foodId, index, id }) => {
+const OrderTableItems = ({
+  userName,
+  userId,
+  foodId,
+  index,
+  id,
+  quantity,
+  setFullTotal,
+}) => {
   const [foodName, setFoodName] = useState();
   const [foodPrice, setFoodPrice] = useState();
   const [foodImage, setFoodImage] = useState();
+  const [quantityPrice, setQuantityPrice] = useState(0);
 
   // Fetch Food Item
   const fetchFoodItem = async () => {
@@ -22,6 +31,7 @@ const OrderTableItems = ({ userName, userId, foodId, index, id }) => {
           setFoodName(response.data.food.itemName);
           setFoodPrice(response.data.food.itemPrice);
           setFoodImage(response.data.food.itemImage);
+          setQuantityPrice(response.data.food.itemPrice * quantity);
         }
       } catch (error) {
         console.log(error);
@@ -55,6 +65,10 @@ const OrderTableItems = ({ userName, userId, foodId, index, id }) => {
   useEffect(() => {
     fetchFoodItem(foodImage);
   }, []);
+
+  useEffect(() => {
+    setFullTotal(quantityPrice);
+  }, []);
   return (
     <tr
       // key={order._id}
@@ -70,6 +84,7 @@ const OrderTableItems = ({ userName, userId, foodId, index, id }) => {
       </td>
       <td className="py-3 px-6">{foodName}</td>
       <td className="py-3 px-6">{foodPrice}</td>
+      <td className="py-3 px-6 text-center">{quantity}</td>
       <td className="py-3 px-6 flex space-x-2 w-full h-full align-middle justify-center">
         <IoClose
           className="text-red-700 text-xl cursor-pointer"

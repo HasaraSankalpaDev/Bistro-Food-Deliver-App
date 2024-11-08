@@ -98,7 +98,7 @@ const AdminSideBarLinks = ({ isCollapsed }) => {
       </li>
       <li className="group w-full my-8">
         <Link
-          href="/Admin/Economy"
+          href="/Admin/Orders"
           className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
         >
           <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">
@@ -109,13 +109,13 @@ const AdminSideBarLinks = ({ isCollapsed }) => {
               isCollapsed ? "hidden" : "inline-block"
             } duration-300`}
           >
-            Economy
+            Orders
           </span>
         </Link>
       </li>
       <li className="group w-full my-8 bottom-0 absolute">
         <Link
-          href="/dashboard"
+          href="/Admin/LogOut"
           className="flex items-center p-4 text-white hover:bg-gray-700 w-full duration-300"
         >
           <span className="inline-block mr-4 scale-125 group-hover:scale-110 duration-300">

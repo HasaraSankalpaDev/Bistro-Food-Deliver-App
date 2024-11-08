@@ -24,20 +24,6 @@ function Page() {
 
   return (
     <div>
-      {/* {foods.length > 0 ? (
-        foods.map((food, index) => (
-          <FoodCards
-            key={index}
-            itemName={food.itemName}
-            itemPrice={food.itemPrice}
-            itemDescription={food.itemDescription}
-            itemCategory={food.itemCategory}
-            itemImage={food.itemImage}
-          />
-        ))
-      ) : (
-        <p>No foods available</p>
-      )} */}
       <FoodCards foods={foods} />
     </div>
   );

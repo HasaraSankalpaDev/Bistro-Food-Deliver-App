@@ -4,7 +4,7 @@ const OrderSchema = new mongoose.Schema({
   userName: { type: String, required: true },
   userId: { type: String, required: true },
   foodId: { type: String, required: true },
-  itemCount: { type: Number, required: true },
+  itemCount: { type: String, required: true },
   date: { type: Date, default: Date.now },
 });
 
