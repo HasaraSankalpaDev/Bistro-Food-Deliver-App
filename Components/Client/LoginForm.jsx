@@ -2,18 +2,22 @@ import axios from "axios";
 import React, { useState } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 function LoginForm({ onClose, onOpen }) {
-  // Creating User ID
-  // const searchParams = useSearchParams();
-  // const id = searchParams.get("id");
-
   const [data, setData] = useState({
     email: "",
     password: "",
   });
 
   const router = useRouter(); // Use the router hook outside the try block
+
+  // Create UserId Variable
+  const saveUserId = (id) => {
+    if (id) {
+      localStorage.setItem("userId", id); // Store the user ID in local storage
+    }
+  };
 
   // Input Handler
   const onChangeHandler = (e) => {
@@ -25,35 +29,49 @@ function LoginForm({ onClose, onOpen }) {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post("/Api/login", {
-        email: data.email,
-        password: data.password,
-      });
-
-      if (response.data.msg === "user found") {
-        console.log("User found");
-        const uId = response.data.user._id;
-        // router.push(`/User?id=${uId}`); // Navigate to admin panel with user ID
-        router.push("http://localhost:3000");
-        saveUserId(uId);
-        window.location.reload();
-      } else if (response.data.msg === "admin found") {
-        console.log("Admin found");
-        const uId = response.data.user._id;
-        router.push(`/Admin?id=${uId}`); // Navigate to admin panel with user ID
+    if (data.email === "") {
+      toast.error("Email Address is Required!");
+    } else if (
+      !data.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+    ) {
+      toast.error("Please Enter a Valid Email!");
+    } else {
+      // Validate Password
+      if (data.password === "") {
+        toast.error("Password is Required!");
+      } else if (data.password.length < 8) {
+        toast.error("Password Must be at least 8 characters.");
       } else {
-        console.log("User not found");
-      }
-    } catch (err) {
-      console.log("Error:", err);
-    }
-  };
+        // User Login Logic
 
-  // Create UserId Variable
-  const saveUserId = (id) => {
-    if (id) {
-      localStorage.setItem("userId", id); // Store the user ID in local storage
+        try {
+          const response = await axios.post("/Api/login", {
+            email: data.email,
+            password: data.password,
+          });
+
+          // Validate Response
+          if (response) {
+            if (response.data.msg === "User_Not_Found") {
+              toast.error("User Not Found!");
+            } else if (response.data.msg === "Invalid_Credentials") {
+              toast.error("Invalid Email or Password!");
+            } else if (response.data.msg === "User_Found") {
+              const uId = response.data.user._id;
+              router.push("http://localhost:3000");
+              saveUserId(uId);
+              window.location.reload();
+            } else if (response.data.msg === "Admin_Found") {
+              const uId = response.data.user._id;
+              router.push(`/Admin?id=${uId}`);
+            } else {
+              toast.error("User Not Found!");
+            }
+          }
+        } catch (err) {
+          console.log("Error:", err);
+        }
+      }
     }
   };
 
@@ -68,10 +86,9 @@ function LoginForm({ onClose, onOpen }) {
                 Email Address:
               </label>
               <input
-                type="email"
+                type="text"
                 className="w-full border border-gray-300 p-3"
                 placeholder="Enter Email Address"
-                required
                 onChange={onChangeHandler}
                 name="email"
                 value={data.email}
@@ -85,7 +102,6 @@ function LoginForm({ onClose, onOpen }) {
                 type="password"
                 className="w-full border border-gray-300 p-3"
                 placeholder="Enter Your Password"
-                required
                 onChange={onChangeHandler}
                 name="password"
                 value={data.password}

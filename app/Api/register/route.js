@@ -7,6 +7,7 @@ export async function POST(request) {
 
   try {
     const formData = await request.formData();
+    const email = formData.get("email");
 
     const usersData = {
       name: formData.get("name"),
@@ -15,18 +16,27 @@ export async function POST(request) {
       type: "user",
     };
 
+    // Check User is Already Exists
+    const user = await UserModel.findOne({ email });
+
+    if (user) {
+      return NextResponse.json({
+        success: false,
+        msg: "User_Already_Exist",
+      });
+    }
+
     await UserModel.create(usersData);
-    console.log("User Created");
 
     return NextResponse.json({
       success: true,
-      msg: "User Created",
+      msg: "User_Registered",
     });
   } catch (error) {
-    console.error("Error creating user:", error);
+    console.error("Error_Found", error);
     return NextResponse.json({
       success: false,
-      msg: "Failed to create user",
+      msg: "Error_Found",
       error: error.message,
     });
   }

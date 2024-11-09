@@ -14,8 +14,8 @@ export async function POST(request) {
 
     if (!user) {
       return NextResponse.json(
-        { success: false, msg: "User not found" },
-        { status: 404 }
+        { success: true, msg: "User_Not_Found" },
+        { status: 200 }
       );
     }
 
@@ -24,15 +24,15 @@ export async function POST(request) {
 
     if (!isPasswordValid) {
       return NextResponse.json(
-        { success: false, msg: "Invalid credentials" },
-        { status: 401 }
+        { success: false, msg: "Invalid_Credentials" },
+        { status: 200 }
       );
     }
 
     // Verify User
     if (user.type === "user") {
       return NextResponse.json(
-        { success: true, msg: "user found", user },
+        { success: true, msg: "User_Found", user },
         { status: 200 }
       );
     }
@@ -40,14 +40,14 @@ export async function POST(request) {
     // Verify Admin
     if (user.type === "admin") {
       return NextResponse.json(
-        { success: true, msg: "admin found", user },
+        { success: true, msg: "Admin_Found", user },
         { status: 200 }
       );
     }
   } catch (error) {
-    console.error("Error logging in user:", error);
+    console.error("404_Error", error);
     return NextResponse.json(
-      { success: false, msg: "Failed to login", error: error.message },
+      { success: false, msg: "404_Error", error: error.message },
       { status: 500 }
     );
   }

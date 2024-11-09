@@ -120,6 +120,7 @@ const UserProfileEdit = () => {
               name="oldPassword"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
+              required
             />
           </div>
 
@@ -134,6 +135,7 @@ const UserProfileEdit = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
 
