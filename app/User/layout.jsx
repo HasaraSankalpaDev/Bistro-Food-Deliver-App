@@ -11,11 +11,11 @@ import Nav from "@/Components/Components/Client/Nav";
 export default function Layout({ children }) {
   return (
     <>
-      <div className="flex">
+      <div className="flex w-full">
         <Nav />
         <ToastContainer theme="dark" />
         <SideBar />
-        <div className="px-8 mt-5">{children}</div>
+        <div className="flex-grow px-8 mt-5">{children}</div>
       </div>
     </>
   );

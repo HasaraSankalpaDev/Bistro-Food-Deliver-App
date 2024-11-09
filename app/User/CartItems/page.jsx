@@ -10,7 +10,7 @@ const Page = () => {
   const [foodItemId, setFoodItemId] = useState(null);
   const [orders, setOrders] = useState([]);
   const [userId, setUserId] = useState(null);
-  const [fullTotal, setFullTotal] = useState(0);
+  const [fullPrice, setFullPrice] = useState(0); // Initialize fullPrice as 0
 
   // Get User Name
   const fetchUserName = async () => {
@@ -99,7 +99,10 @@ const Page = () => {
   return (
     <div className="mt-20">
       <div className="container mx-auto p-4">
-        <h2 className="text-2xl font-semibold mb-4">Orders List</h2>
+        <div className="flex w-full justify-between">
+          <h2 className="text-2xl font-semibold mb-4">Orders List</h2>
+          <h3 className="text-xl font-semibold">Total : ${fullPrice}</h3>
+        </div>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
             <thead>
@@ -123,7 +126,7 @@ const Page = () => {
                     userId={order.userId}
                     foodId={order.foodId}
                     quantity={order.itemCount}
-                    setFullTotal={setFullTotal()}
+                    setFullPrice={setFullPrice} // Pass setFullPrice to each item
                   />
                 ))
               ) : (

@@ -1,5 +1,8 @@
 "use client";
+
+import { assets } from "@/Components/Assets/assets";
 import axios from "axios";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 const UserProfile = () => {
@@ -45,61 +48,25 @@ const UserProfile = () => {
   useEffect(() => {
     fetchUser();
   }, [userId]); // Fetch user when userId changes
-
   return (
-    <div>
-      <div className="my-10 px-8 mt-20 py-8 rounded-lg shadow-lg w-[100%]">
-        <div className="w-[100%]">
-          <h1 className="text-2xl font-semibold">Hello! {name || "User"}</h1>
-          <p className="text-medium text-gray-600 my-3">
-            Your profile information is below:
+    <div className="w-full px-8 mt-20 py-4 shadow-lg">
+      <div class="p-6 md:flex md:items-center">
+        <div class="md:w-1/3">
+          <Image
+            className="w-30 h-30 md:h-48 object-cover rounded-full mx-auto"
+            src={assets.profile_icon}
+            alt="User Profile Picture"
+          />
+        </div>
+        <div class="mt-4 md:mt-0 md:ml-6 md:w-2/3">
+          <h2 class="text-2xl font-semibold text-gray-800">{name}</h2>
+          <p class="text-gray-600 mt-2">Email: {email}</p>
+          <p className="mt-2">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           </p>
-          <form className="mt-10">
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-3">
-                Your Name:
-              </label>
-              <input
-                type="text"
-                className="w-full border border-gray-300 p-3"
-                placeholder="Your Name"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)} // Update name on change
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-3">
-                Email Address:
-              </label>
-              <input
-                type="email"
-                className="w-full border border-gray-300 p-3"
-                placeholder="Email Address"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)} // Update email on change
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-3">
-                Password:
-              </label>
-              <input
-                type="password"
-                className="w-full border border-gray-300 p-3"
-                placeholder="Your Password"
-                name="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} // Update password on change
-              />
-            </div>
-            <div className="w-full">
-              <button className="bg-orange-600 py-2 px-5 w-full text-white rounded-lg">
-                Verify Account
-              </button>
-            </div>
-          </form>
+          <button class="mt-4 px-6 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600">
+            Verify Account
+          </button>
         </div>
       </div>
     </div>

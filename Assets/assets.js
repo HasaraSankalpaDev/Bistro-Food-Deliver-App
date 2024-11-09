@@ -13,6 +13,7 @@ import team_01 from "./team-1.jpg";
 import team_02 from "./team-2.jpg";
 import team_03 from "./team-3.jpg";
 import team_04 from "./team-4.jpg";
+import profile_icon from "./profile-icon.png";
 
 // Exporting assets
 export const assets = {
@@ -26,6 +27,7 @@ export const assets = {
   team_02,
   team_03,
   team_04,
+  profile_icon,
 };
 
 // Defining food items

@@ -4,24 +4,14 @@ import { connectDB } from "@/Components/Lib/Config/Db.config";
 
 export async function POST(request) {
   await connectDB();
+
   try {
-    const userData = await request.json();
-
-    // Log incoming user data to check its structure
-    console.log("User Data:", userData);
-
-    // Validate the user data exists
-    if (!userData.name || !userData.email || !userData.password) {
-      return NextResponse.json({
-        success: false,
-        msg: "Name, email, and password are required fields.",
-      });
-    }
+    const formData = await request.formData();
 
     const usersData = {
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
+      name: formData.get("name"),
+      email: formData.get("email"),
+      password: formData.get("password"),
       type: "user",
     };
 
@@ -34,10 +24,10 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("Error creating user:", error);
-    const errorMsg = error.errors?.password?.message || "Failed to create user";
     return NextResponse.json({
       success: false,
-      msg: errorMsg,
+      msg: "Failed to create user",
+      error: error.message,
     });
   }
 }

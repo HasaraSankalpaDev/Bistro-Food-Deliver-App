@@ -9,7 +9,6 @@ function SignUpForm({ onClose, onLoginOpen }) {
     password: "",
     type: "user",
   });
-
   // OnChange Handler
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -22,15 +21,19 @@ function SignUpForm({ onClose, onLoginOpen }) {
     console.log(data);
 
     try {
-      const response = await axios.post("/Api/register", {
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        type: data.type,
-      }); // Check API path
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      formData.append("type", data.type);
+
+      const response = await axios.post("/Api/register", formData); // Check API path
       console.log("Success:", response.data);
 
-      onLoginOpen(true);
+      if (response) {
+        onLoginOpen(true);
+      }
+
       // You can add a success message or redirect here
     } catch (error) {
       console.error(

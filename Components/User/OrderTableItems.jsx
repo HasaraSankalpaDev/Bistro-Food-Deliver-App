@@ -1,6 +1,5 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { toast } from "react-toastify";
@@ -12,12 +11,11 @@ const OrderTableItems = ({
   index,
   id,
   quantity,
-  setFullTotal,
+  setFullPrice,
 }) => {
   const [foodName, setFoodName] = useState();
   const [foodPrice, setFoodPrice] = useState();
   const [foodImage, setFoodImage] = useState();
-  const [quantityPrice, setQuantityPrice] = useState(0);
 
   // Fetch Food Item
   const fetchFoodItem = async () => {
@@ -31,7 +29,6 @@ const OrderTableItems = ({
           setFoodName(response.data.food.itemName);
           setFoodPrice(response.data.food.itemPrice);
           setFoodImage(response.data.food.itemImage);
-          setQuantityPrice(response.data.food.itemPrice * quantity);
         }
       } catch (error) {
         console.log(error);
@@ -49,8 +46,7 @@ const OrderTableItems = ({
         if (response) {
           console.log("Order deleted successfully!");
           fetchFoodItem();
-
-          toast.success("Item Removed Successfully! ");
+          toast.success("Item Removed Successfully!");
           setTimeout(() => {
             window.location.reload();
           }, 5000);
@@ -60,24 +56,25 @@ const OrderTableItems = ({
       }
     }
   };
-  console.log();
 
   useEffect(() => {
     fetchFoodItem(foodImage);
-  }, []);
+  }, [foodId]);
 
+  // Calculate Full Price
   useEffect(() => {
-    setFullTotal(quantityPrice);
-  }, []);
+    if (foodPrice && quantity) {
+      const itemFullPrice = foodPrice * quantity;
+      setFullPrice((prev) => prev + itemFullPrice);
+    }
+  }, [foodPrice, quantity, setFullPrice]);
+
   return (
-    <tr
-      // key={order._id}
-      className="border-b border-gray-200 hover:bg-gray-100"
-    >
-      <td className="py-3 px-6">{index}</td>
+    <tr className="border-b border-gray-200 hover:bg-gray-100">
+      <td className="py-3 px-6">{index + 1}</td>
       <td className="py-3 px-6">
         <img
-          src={`http://localhost:3000/${foodImage}`} // Use the root path to access images in the public folder
+          src={`http://localhost:3000/${foodImage}`}
           alt={foodName}
           className="w-[50px] h-[50px] rounded-full"
         />

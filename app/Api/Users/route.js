@@ -1,6 +1,8 @@
 import UserModel from "@/Components/Lib/Models/UsersModel";
 import { NextResponse } from "next/server";
 import { connectDB } from "@/Components/Lib/Config/Db.config"; // Changed to import
+import { writeFile } from "fs/promises"; // To write the image to the file system
+import { Buffer } from "buffer";
 
 // Get All Users
 
@@ -39,22 +41,19 @@ export async function GET(request) {
 
 // Add User
 export async function POST(request) {
-  // Ensure the database is connected before performing any operation
   await connectDB();
 
   try {
-    // If you are sending data as JSON
-    const userData = await request.json(); // Parse the request body as JSON
+    const formData = await request.formData();
 
-    // Construct the user data
     const usersData = {
-      name: userData.name, // Access the fields directly from userData
-      email: userData.email,
-      password: userData.password, // Ensure password is passed
-      type: "user", // Default to 'user' if userType is not provided
+      name: formData.get("name"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+
+      type: "user",
     };
 
-    // Save the user data to the database
     await UserModel.create(usersData);
     console.log("User Created");
 
@@ -67,6 +66,46 @@ export async function POST(request) {
     return NextResponse.json({
       success: false,
       msg: "Failed to create user",
+      error: error.message,
+    });
+  }
+}
+
+// API Endpoint to Edit User
+export async function PUT(request) {
+  try {
+    await connectDB();
+
+    const formData = await request.formData();
+    const id = formData.get("id");
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const existingUser = await UserModel.findById(id);
+    if (!existingUser) {
+      return NextResponse.json({ success: false, msg: "User not found" });
+    }
+
+    // Construct the updated user data
+    const updatedData = {
+      name: name || existingUser.name,
+      email: email || existingUser.email,
+      password: password || existingUser.password,
+    };
+
+    // Update the user in the database
+    await UserModel.findByIdAndUpdate(id, updatedData);
+
+    return NextResponse.json({
+      success: true,
+      msg: "User Updated",
+    });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    return NextResponse.json({
+      success: false,
+      msg: "Failed to update user",
       error: error.message,
     });
   }
