@@ -1,13 +1,10 @@
 import { NextResponse } from "next/server";
 import { writeFile } from "fs/promises";
 import { Buffer } from "buffer";
-import { NextURL } from "next/dist/server/web/next-url";
-import { fs } from "fs";
 import foodModel from "@/Components/Lib/Models/FoodModel";
 import { connectDB } from "@/Components/Lib/Config/Db.config";
 
-// Foods Listing Api Endpoint
-
+// Api Endpoint to Get Foods
 export async function GET(request) {
   await connectDB();
 
@@ -23,13 +20,12 @@ export async function GET(request) {
   }
 }
 
-// Food Saving Api Endpoint
+// Api Endpoint to Save Foods
 export async function POST(request) {
   await connectDB();
   const foodData = await request.formData();
   const timestamp = Date.now();
 
-  // Get the image file
   const image = foodData.get("itemImage");
 
   if (image && typeof image.arrayBuffer === "function") {
@@ -57,7 +53,6 @@ export async function POST(request) {
       itemImage: `${imgUrl}`,
     };
 
-    // Save the food data to the database
     await foodModel.create(itemData);
     console.log("Food Saved Succesfully");
 
@@ -77,24 +72,21 @@ export async function PUT(request) {
   try {
     await connectDB();
 
-    // Parse FormData from the request
     const formData = await request.formData();
     const itemId = formData.get("itemId");
     const itemName = formData.get("itemName");
     const itemPrice = formData.get("itemPrice");
     const itemDescription = formData.get("itemDescription");
     const itemCategory = formData.get("itemCategory");
-    const itemImage = formData.get("itemImage"); // This will be a File object if provided
+    const itemImage = formData.get("itemImage");
 
     const timestamp = Date.now();
 
-    // Find the existing item in the database
     const existingItem = await foodModel.findById(itemId);
     if (!existingItem) {
       return NextResponse.json({ success: false, msg: "Item not found" });
     }
 
-    // Default to the existing image URL
     let imgUrl = existingItem.itemImage;
 
     if (itemImage && typeof itemImage.arrayBuffer === "function") {
@@ -114,7 +106,6 @@ export async function PUT(request) {
       imgUrl = `/${timestamp}_${itemImage.name}`;
     }
 
-    // Construct the updated food data
     const updatedData = {
       itemName: itemName || existingItem.itemName,
       itemPrice: itemPrice || existingItem.itemPrice,
@@ -123,7 +114,6 @@ export async function PUT(request) {
       itemImage: imgUrl,
     };
 
-    // Update the food item in the database
     await foodModel.findByIdAndUpdate(itemId, updatedData);
 
     console.log("Food Item Updated Successfully");

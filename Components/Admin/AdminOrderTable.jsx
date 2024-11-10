@@ -17,6 +17,7 @@ const AdminOrderTable = ({
   const [foodName, setFoodName] = useState([]);
   const [foodImage, setFoodImage] = useState([]);
 
+  // Fetch Food Item
   const fetchFoodItem = async () => {
     try {
       const response = await axios.get(
@@ -31,6 +32,7 @@ const AdminOrderTable = ({
     }
   };
 
+  // Handle Delete
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
@@ -41,7 +43,7 @@ const AdminOrderTable = ({
         toast.success("Order deleted successfully!");
         setTimeout(() => {
           window.location.reload();
-        }, 5000); // 5000 ms = 5 seconds
+        }, 5000);
       } else {
         toast.error("Failed to delete order!");
       }

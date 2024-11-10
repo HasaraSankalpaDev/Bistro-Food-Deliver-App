@@ -1,21 +1,14 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { RiCloseFill } from "react-icons/ri";
 import { toast } from "react-toastify";
-
 import axios from "axios";
 
 const MessageTableItems = () => {
-  // Message By Id
   const [messageBYId, setMessageById] = useState();
-
-  // Model Open
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
   const [messageList, setMessageList] = useState([]);
 
   // Fetch Messages
@@ -30,15 +23,15 @@ const MessageTableItems = () => {
         setMessageList(response.data.massage);
       } else {
         console.error("Expected an array, received:", response.data);
-        setMessageList([]); // Set to empty array if response is not as expected
+        setMessageList([]);
       }
     } catch (error) {
       console.error("Error fetching users:", error);
-      setMessageList([]); // Set to empty array in case of error
+      setMessageList([]);
     }
   };
 
-  // Handle View
+  // Handle View Details
   const handleView = async (id) => {
     try {
       const response = await axios.get(

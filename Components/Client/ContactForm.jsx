@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-
 import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ContactForm = () => {
@@ -21,7 +19,6 @@ const ContactForm = () => {
   // Submit Handler
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
 
     try {
       const response = await axios.post("http://localhost:3000/Api/contact", {
@@ -32,7 +29,6 @@ const ContactForm = () => {
       if (response) {
         toast.success("Message Sended Successfully!");
       }
-      console.log("Success:", response.data);
     } catch (error) {
       toast.error("Error Occurred, Please Try Again Later");
     }

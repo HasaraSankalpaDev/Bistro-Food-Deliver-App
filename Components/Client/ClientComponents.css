@@ -1,7 +1,7 @@
 /* Heading Font */
 @import url("https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&family=Dosis:wght@200..800&display=swap");
 
-/* ## Heade ## */
+/* ## Header ## */
 .header {
   width: 100%;
   height: 100%;
@@ -44,15 +44,6 @@
   font-weight: 600;
   margin: 8px 5px;
 }
-/* .food-item-img-container {
-  position: relative;
-}
-.food-item-img-container.add {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  background: #fff;
-} */
 .food-item-img-container {
   position: relative;
   width: 100%;
@@ -68,8 +59,8 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
-  border-radius: 50%; /* Optional: Makes the icon circular */
-  padding: 5px; /* Optional: Adds padding for better spacing */
+  border-radius: 50%;
+  padding: 5px;
   cursor: pointer;
   cursor: pointer;
 }
@@ -81,7 +72,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 8px; /* Optional: Adds padding */
+  padding: 5px 8px;
   cursor: pointer;
 }
 .counter-icon-plus {

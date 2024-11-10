@@ -9,27 +9,17 @@ const LogoutPage = () => {
     setUserId(id);
   }, []);
 
+  // Log Out Handler
   const handleLogout = () => {
-    localStorage.removeItem("userId"); // Remove userId from local storage
-    setUserId(null); // Clear the userId from component state
-    // Optionally, redirect to login page or another page
+    localStorage.removeItem("userId");
+    setUserId(null);
   };
 
   useEffect(() => {
     handleLogout();
-    window.location.href = "  http://localhost:3000";
+    window.location.href = "http://localhost:3000";
   }, []);
-  return (
-    <div>
-      <h1>Logout Page</h1>
-      {userId ? (
-        <p>Logged in as user ID: {userId}</p>
-      ) : (
-        <p>You are not logged in.</p>
-      )}
-      <button onClick={handleLogout}>Logout</button>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default LogoutPage;

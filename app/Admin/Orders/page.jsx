@@ -5,15 +5,17 @@ import React, { useEffect, useState } from "react";
 
 function page() {
   const [orders, setOrders] = useState([]);
+
+  // Fetching Orders
   const fetchOrders = async () => {
     try {
       const response = await axios.get("http://localhost:3000/Api/Orders");
       setOrders(response.data.orders);
-      console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
+
   useEffect(() => {
     fetchOrders();
   }, []);
@@ -33,7 +35,6 @@ function page() {
                 <th className="py-3 px-6 text-center">Actions</th>
               </tr>
             </thead>
-            {/* <AdminOrderTable /> */}
             <tbody>
               {orders.map((order, index) => (
                 <AdminOrderTable

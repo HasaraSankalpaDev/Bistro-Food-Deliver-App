@@ -2,14 +2,10 @@
 import Nav from "@/Components/Components/Client/Nav";
 import "./gallery.css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Footer from "@/Components/Components/Client/Footer";
 
 // pages/menu.js
 const page = () => {
-  const [images, setImages] = useState();
-  const [userId, setUserId] = useState(null);
-
   useEffect(() => {
     const id = localStorage.getItem("userId");
     setUserId(id);

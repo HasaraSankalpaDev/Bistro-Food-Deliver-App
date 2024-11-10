@@ -10,6 +10,7 @@ function SignUpForm({ onClose, onLoginOpen }) {
     password: "",
     type: "user",
   });
+
   // OnChange Handler
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -19,7 +20,6 @@ function SignUpForm({ onClose, onLoginOpen }) {
   // Submit Handler
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
 
     // Validate Name
     if (data.name === "") {
@@ -48,7 +48,6 @@ function SignUpForm({ onClose, onLoginOpen }) {
             formData.append("type", data.type);
 
             const response = await axios.post("/Api/register", formData); // Check API path
-            console.log("Success:", response.data);
 
             if (response.data.msg === "User_Already_Exist") {
               toast.error("User Already Exist, User Another Email Address!");
@@ -148,7 +147,6 @@ function SignUpForm({ onClose, onLoginOpen }) {
             className="absolute top-4 right-2 text-gray-600 hover:text-gray-900"
           >
             <RiCloseFill className="mr-5 w-[20px] h-[20px]" />{" "}
-            {/* Correct icon */}
           </button>
         </div>
       </div>

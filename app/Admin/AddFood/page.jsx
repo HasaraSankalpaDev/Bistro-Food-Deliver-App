@@ -2,8 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useSearchParams } from "next/navigation"; // Use this instead of useRouter
-import { useRouter } from "next/navigation";
+
 const Page = () => {
   // State Handle
   const [image, setImage] = useState(null);
@@ -16,14 +15,13 @@ const Page = () => {
   });
   const [adminId, setAdminId] = useState();
 
-  console.log(data);
-
+  // Input Handler
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Image Handle
+  // Image Handler
   const onFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -46,8 +44,6 @@ const Page = () => {
       "http://localhost:3000/Api/food",
       formData
     );
-
-    console.log(response);
 
     if (response.data.success) {
       toast.success("Food Item Saved Succesfully !");

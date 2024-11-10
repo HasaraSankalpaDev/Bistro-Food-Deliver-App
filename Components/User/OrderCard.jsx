@@ -6,7 +6,7 @@ const OrderCard = ({ foodId, quantity }) => {
   const [foodName, setFoodName] = useState();
   const [foodPrice, setFoodPrice] = useState();
   const [foodImage, setFoodImage] = useState();
-  //   const [quantity, setQuantity] = useState();
+
   // Fetch Food Item
   const fetchFoodItem = async () => {
     if (foodId) {
@@ -15,11 +15,9 @@ const OrderCard = ({ foodId, quantity }) => {
           `http://localhost:3000/Api/food?id=${foodId}`
         );
         if (response) {
-          console.log(response);
           setFoodName(response.data.food.itemName);
           setFoodPrice(response.data.food.itemPrice);
           setFoodImage(response.data.food.itemImage);
-          //   setQuantity(response.data.food.itemCount);
         }
       } catch (error) {
         console.log(error);

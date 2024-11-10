@@ -23,12 +23,11 @@ const UserProfileEdit = () => {
         `http://localhost:3000/Api/Users?id=${userId}`
       );
       if (response && response.data && response.data.user) {
-        console.log("User Data:", response.data.user);
         const { name, email, password } = response.data.user;
         setUser(response.data.user);
         setName(name);
         setEmail(email);
-        setUser((prev) => ({ ...prev, password })); // Store the current password in `user`
+        setUser((prev) => ({ ...prev, password }));
       } else {
         console.error("Failed to fetch user data");
       }
@@ -53,7 +52,6 @@ const UserProfileEdit = () => {
     e.preventDefault();
 
     if (oldPassword !== user.password) {
-      // Compare oldPassword with user.password
       toast.error("Old password does not match.");
       return;
     }
@@ -62,14 +60,13 @@ const UserProfileEdit = () => {
     formData.append("id", userId);
     formData.append("name", name);
     formData.append("email", email);
-    formData.append("password", password); // New password
+    formData.append("password", password);
 
     try {
       const response = await axios.put(
         "http://localhost:3000/Api/Users",
         formData
       );
-      console.log(response);
       toast.success("Profile updated successfully.");
     } catch (err) {
       console.error(err);

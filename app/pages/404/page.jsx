@@ -1,5 +1,4 @@
 import React from "react";
-import "./404.css";
 import Link from "next/link";
 
 function page() {

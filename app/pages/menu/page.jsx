@@ -1,21 +1,16 @@
 "use client";
 import Nav from "@/Components/Components/Client/Nav";
 import { useEffect, useState } from "react";
-import food_items, { assets } from "@/Components/Assets/assets";
 import MenuItem from "@/Components/Components/Client/MenuItem";
 import Footer from "@/Components/Components/Client/Footer";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// pages/menu.js
 const page = () => {
   const [menu, setMenu] = useState("All");
   const [foods, setFoods] = useState([]); // You might not need this state if it's not being used
   const [userId, setUserId] = useState(null);
-
-  const items = Array.isArray(food_items) ? food_items : [];
 
   // Fetch All Items
   const fetchAllItems = async () => {
@@ -26,13 +21,14 @@ const page = () => {
         setFoods(response.data.foods);
       } else {
         console.error("Expected an array, received:", response.data);
-        setFoods([]); // Set to empty array if response is not as expected
+        setFoods([]);
       }
     } catch (error) {
       console.error("Error fetching food items:", error);
-      setFoods([]); // Set to empty array in case of error
+      setFoods([]);
     }
   };
+
   // Fetch UserID
   useEffect(() => {
     const id = localStorage.getItem("userId");

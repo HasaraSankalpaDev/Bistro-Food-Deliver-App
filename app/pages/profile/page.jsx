@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { CgProfile } from "react-icons/cg";
 import UserSideBar from "@/Components/Components/User/UserSideBar";
 
-// pages/menu.js
 const page = () => {
   const [userId, setUserId] = useState(null);
 

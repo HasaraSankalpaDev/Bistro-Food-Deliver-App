@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 function Page() {
   const [foods, setFoods] = useState([]);
 
+  // Fetching Foods
   const fetchFoods = async () => {
     try {
       const response = await axios.get("http://localhost:3000/Api/food");

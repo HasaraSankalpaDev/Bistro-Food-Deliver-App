@@ -1,17 +1,8 @@
-"use client"; // Make sure it's a client component
-
+"use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const [userId, setUserId] = useState(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const id = localStorage.getItem("userId");
-    setUserId(id);
-  }, []);
-
   return (
     <div>
       <p className="mt-36">

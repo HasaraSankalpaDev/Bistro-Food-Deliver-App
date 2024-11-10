@@ -1,11 +1,8 @@
 "use client";
-
 import OrderTableItems from "@/Components/Components/User/OrderTableItems";
 import axios from "axios";
 import Link from "next/link";
-
 import React, { useEffect, useState } from "react";
-
 import { toast } from "react-toastify";
 
 const Page = () => {
@@ -15,7 +12,7 @@ const Page = () => {
   const [userId, setUserId] = useState(null);
   const [fullPrice, setFullPrice] = useState(0); // Initialize fullPrice as 0
 
-  // Get User Name
+  // Fetch User Name
   const fetchUserName = async () => {
     if (userId) {
       try {
@@ -31,7 +28,7 @@ const Page = () => {
     }
   };
 
-  // Get Orders by UserName
+  // Fetch Orders by UserName
   const fetchOrder = async () => {
     try {
       const response = await axios.get(
@@ -105,7 +102,9 @@ const Page = () => {
         <div className="flex w-full justify-between">
           <h2 className="text-2xl font-semibold mb-4">Orders List</h2>
 
-          <h3 className="text-xl font-semibold">Total : ${fullPrice}</h3>
+          <h3 className="text-xl font-semibold">
+            Total : ${Math.floor(fullPrice)}
+          </h3>
         </div>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
@@ -130,7 +129,7 @@ const Page = () => {
                     userId={order.userId}
                     foodId={order.foodId}
                     quantity={order.itemCount}
-                    setFullPrice={setFullPrice} // Pass setFullPrice to each item
+                    setFullPrice={setFullPrice}
                   />
                 ))
               ) : (

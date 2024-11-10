@@ -1,6 +1,5 @@
 "use client";
 import Nav from "@/Components/Components/Client/Nav";
-
 import Footer from "@/Components/Components/Client/Footer";
 import ContactForm from "@/Components/Components/Client/ContactForm";
 import { MdOutlineWifiCalling3 } from "react-icons/md";
@@ -10,7 +9,6 @@ import { FaDirections } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// pages/menu.js
 const page = () => {
   return (
     <div>

@@ -1,41 +1,35 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const UsersTableItems = () => {
-  const [usersList, setUsersList] = useState([]); // Initialize as an empty array
+  const [usersList, setUsersList] = useState([]);
 
+  // Fetch Users
   const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:3000/Api/Users");
-      console.log("API Response:", response);
       if (Array.isArray(response.data.users)) {
         setUsersList(response.data.users);
       } else {
         console.error("Expected an array, received:", response.data);
-        setUsersList([]); // Set to empty array if response is not as expected
+        setUsersList([]);
       }
     } catch (error) {
       console.error("Error fetching users:", error);
-      setUsersList([]); // Set to empty array in case of error
+      setUsersList([]);
     }
   };
 
+  // Handle Delete
   const handleDelete = async (userId) => {
     try {
-      console.log("Deleting user with ID:", userId);
-
       const response = await axios.delete(
         `http://localhost:3000/Api/Users?id=${userId}`
       );
 
-      console.log("API Response:", response);
-
       if (response.status === 200) {
-        // Assuming you want to update the users list in your state
-
         setUsersList((prevList) =>
           prevList.filter((user) => user._id !== userId)
         );

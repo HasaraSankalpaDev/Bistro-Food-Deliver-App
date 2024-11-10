@@ -1,9 +1,5 @@
 "use client";
-
-// import { assets } from "../../Assets/assets"; // Ensure this import is correct
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
-// import food_items from "@/Assets/assets"; // Ensure this is correctly imported
 import MenuItem from "./MenuItem";
 import food_items, { assets } from "@/Components/Assets/assets";
 import axios from "axios";
@@ -13,22 +9,19 @@ const FoodMenu = () => {
   const [foods, setFoods] = useState([]);
   const [userId, setUserId] = useState(null);
 
-  console.log(food_items[2]);
-
   // Fetch All Items
   const fetchAllItems = async () => {
     try {
       const response = await axios.get("http://localhost:3000/Api/food");
-      console.log("API Response:", response);
       if (Array.isArray(response.data.foods)) {
         setFoods(response.data.foods);
       } else {
         console.error("Expected an array, received:", response.data);
-        setFoods([]); // Set to empty array if response is not as expected
+        setFoods([]);
       }
     } catch (error) {
       console.error("Error fetching food items:", error);
-      setFoods([]); // Set to empty array in case of error
+      setFoods([]);
     }
   };
 
@@ -123,7 +116,6 @@ const FoodMenu = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 mt-8">
-        {/* // Card */}
         {foods
           .filter((item) =>
             menu === "All" ? true : item.itemCategory === menu

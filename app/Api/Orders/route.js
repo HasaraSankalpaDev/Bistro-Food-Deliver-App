@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/Components/Lib/Config/Db.config";
 import OrderModel from "@/Components/Lib/Models/OrdersModel";
 
-// Orders Listing API Endpoint
+// Api Endpoint to Get Orders
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const userName = searchParams.get("userName");
@@ -14,7 +14,7 @@ export async function GET(request) {
   return NextResponse.json({ orders });
 }
 
-// Order Saving API Endpoint
+// Api Endpoint to Save Orders
 export async function POST(request) {
   await connectDB();
   try {
@@ -32,7 +32,6 @@ export async function POST(request) {
       return NextResponse.json({ success: false, msg: "Invalid item count" });
     }
 
-    // Save the order data to the database
     await OrderModel.create(orderData);
     console.log("Order Saved");
 
@@ -49,10 +48,10 @@ export async function POST(request) {
   }
 }
 
-// Delete Order By Id
+// Api Endpoint to Delete Orders
 export async function DELETE(request) {
   try {
-    await connectDB(); // Connect to the database
+    await connectDB();
 
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
@@ -71,7 +70,7 @@ export async function DELETE(request) {
         { status: 200 }
       );
     } else if (userId) {
-      await OrderModel.deleteMany({ userId: userId }); // Use deleteMany to delete orders for a specific user
+      await OrderModel.deleteMany({ userId: userId });
       return NextResponse.json(
         { msg: "Orders for the user deleted successfully" },
         { status: 200 }

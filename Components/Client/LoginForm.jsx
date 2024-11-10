@@ -10,17 +10,17 @@ function LoginForm({ onClose, onOpen }) {
     password: "",
   });
 
-  const router = useRouter(); // Use the router hook outside the try block
+  const router = useRouter();
 
   // Create UserId Variable
   const saveUserId = (id) => {
     if (id) {
-      localStorage.setItem("userId", id); // Store the user ID in local storage
+      localStorage.setItem("userId", id);
     }
   };
   const saveAdminId = (id) => {
     if (id) {
-      localStorage.setItem("adminId", id); // Store the user ID in local storage
+      localStorage.setItem("adminId", id);
     }
   };
 
@@ -41,21 +41,17 @@ function LoginForm({ onClose, onOpen }) {
     ) {
       toast.error("Please Enter a Valid Email!");
     } else {
-      // Validate Password
       if (data.password === "") {
         toast.error("Password is Required!");
       } else if (data.password.length < 8) {
         toast.error("Password Must be at least 8 characters.");
       } else {
-        // User Login Logic
-
         try {
           const response = await axios.post("/Api/login", {
             email: data.email,
             password: data.password,
           });
 
-          // Validate Response
           if (response) {
             if (response.data.msg === "User_Not_Found") {
               toast.error("User Not Found!");
@@ -65,12 +61,14 @@ function LoginForm({ onClose, onOpen }) {
               toast.error("User Not Found!");
             }
 
+            // Handle User
             if (response.data.msg === "User_Found") {
               const uId = response.data.user._id;
               router.push("http://localhost:3000");
               saveUserId(uId);
               window.location.reload();
             }
+            // Handle Admin
             if (response.data.msg === "Admin_Found") {
               const uId = response.data.user._id;
               saveAdminId(uId);

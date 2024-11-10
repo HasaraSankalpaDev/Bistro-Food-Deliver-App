@@ -1,9 +1,0 @@
-.not_found_page {
-  background: url("../../../Assets/404.jpeg"), rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100vh;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-blend-mode: darken;
-}

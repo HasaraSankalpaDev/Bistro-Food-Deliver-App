@@ -1,7 +1,6 @@
 "use client";
 import UsersTableItems from "@/Components/Components/Admin/UsersTableItems";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 function page() {
   return (

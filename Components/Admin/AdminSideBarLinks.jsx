@@ -58,7 +58,7 @@ const AdminSideBarLinks = ({ isCollapsed }) => {
               isCollapsed ? "hidden" : "inline-block"
             } duration-300`}
           >
-            Fooods
+            Foods
           </span>
         </Link>
       </li>

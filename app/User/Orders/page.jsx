@@ -4,10 +4,10 @@ import { LuShoppingCart } from "react-icons/lu";
 import axios from "axios";
 import OrderCard from "@/Components/Components/User/OrderCard";
 import { useSearchParams, useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const [orders, setOrders] = useState([]);
-  const [userId, setUserId] = useState(null);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -29,9 +29,14 @@ const Page = () => {
     }
   };
 
+  // Confirm Order
+  const confirmOrder = (e) => {
+    e.preventDefault();
+    toast.success("Your Order Placed Successfully!");
+  };
+
   useEffect(() => {
     const id = localStorage.getItem("userId");
-    setUserId(id);
   }, []);
 
   useEffect(() => {
@@ -58,7 +63,9 @@ const Page = () => {
               <p className="my-10">No Orders</p>
             )}
             <div className="mt-5">
-              <p className="text-xl font-medium">Total : ${total}</p>
+              <p className="text-xl font-medium">
+                Total : ${Math.floor(total)}
+              </p>
             </div>
           </div>
           <div className="bg-white p-8 w-full shadow-xl rounded-lg">
@@ -72,12 +79,67 @@ const Page = () => {
                 <input
                   type="text"
                   className="w-full border border-gray-300 p-3 rounded-md focus:ring-2 focus:ring-orange-500 focus:outline-none"
-                  placeholder="Enter your name"
+                  placeholder="Enter Your Name"
                   name="name"
                   required
                 />
               </div>
-              {/* Add the rest of your form fields here */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Your Email:
+                </label>
+                <input
+                  type="email"
+                  className="w-full border border-gray-300 p-3 rounded-md focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                  placeholder="Enter Your Email Address"
+                  name="name"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Your Account Branch:
+                </label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 p-3 rounded-md focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                  placeholder="Enter Your  Account Branch"
+                  name="name"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Your Account Number:
+                </label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 p-3 rounded-md focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                  placeholder="Enter Your Account Number"
+                  name="name"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Your Amount:
+                </label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 p-3 rounded-md focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                  placeholder="Enter Your Amount"
+                  name="name"
+                  value={"$" + total}
+                  required
+                />
+              </div>
+              <button
+                type="button"
+                onClick={(e) => confirmOrder(e)}
+                className="bg-orange-600 py-3 px-6 w-full text-white rounded-lg hover:bg-orange-700"
+              >
+                Confirm Order
+              </button>
             </form>
           </div>
         </div>

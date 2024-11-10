@@ -1,19 +1,14 @@
 import UserModel from "@/Components/Lib/Models/UsersModel";
 import { NextResponse } from "next/server";
-import { connectDB } from "@/Components/Lib/Config/Db.config"; // Changed to import
-import { writeFile } from "fs/promises"; // To write the image to the file system
-import { Buffer } from "buffer";
+import { connectDB } from "@/Components/Lib/Config/Db.config";
 
-// Get All Users
-
+// Api Endpoint to Get Users
 export async function GET(request) {
-  // Ensure the database is connected before performing any operation
   await connectDB();
 
   try {
-    // Parse the request URL and its query parameters
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get("id"); // Get the 'id' query parameter
+    const userId = searchParams.get("id");
 
     if (userId) {
       // Find a user by the provided ID
@@ -39,7 +34,7 @@ export async function GET(request) {
   }
 }
 
-// Add User
+// Api Endpoint to Save Users
 export async function POST(request) {
   await connectDB();
 
@@ -50,7 +45,6 @@ export async function POST(request) {
       name: formData.get("name"),
       email: formData.get("email"),
       password: formData.get("password"),
-
       type: "user",
     };
 
@@ -71,7 +65,7 @@ export async function POST(request) {
   }
 }
 
-// API Endpoint to Edit User
+// API Endpoint to Edit Users
 export async function PUT(request) {
   try {
     await connectDB();
@@ -87,7 +81,6 @@ export async function PUT(request) {
       return NextResponse.json({ success: false, msg: "User not found" });
     }
 
-    // Construct the updated user data
     const updatedData = {
       name: name || existingUser.name,
       email: email || existingUser.email,

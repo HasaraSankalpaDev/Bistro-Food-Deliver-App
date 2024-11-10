@@ -1,6 +1,5 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { IoRemove } from "react-icons/io5";
@@ -35,8 +34,6 @@ const MenuItem = ({
         if (response) {
           setUserName(response.data.user.name);
         }
-
-        console.log(response);
       } catch (error) {
         console.error("Error placing order:", error);
       }
@@ -45,7 +42,7 @@ const MenuItem = ({
     }
   };
 
-  // handle order placement
+  // Handle Order Saving Part
   const handleOrder = async () => {
     console.log(userName);
     if (userId) {
@@ -56,7 +53,6 @@ const MenuItem = ({
           foodId: id,
           itemCount: itemCount,
         });
-        console.log(response);
         toast.success("Order Successfully Saved!");
       } catch (error) {
         console.error("Error placing order:", error);

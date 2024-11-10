@@ -1,5 +1,4 @@
 "use client";
-
 import { assets } from "@/Components/Assets/assets";
 import axios from "axios";
 import Image from "next/image";
@@ -12,26 +11,23 @@ const UserProfile = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Fetch User
   const fetchUser = async () => {
-    // Only fetch if userId is valid
     if (!userId || userId === "null") {
       console.error("Invalid user ID:", userId);
-      return; // Exit early if userId is invalid
+      return;
     }
 
     try {
       const response = await axios.get(
         `http://localhost:3000/Api/Users?id=${userId}`
       );
-
       if (response && response.data && response.data.user) {
-        console.log("User Data:", response.data.user);
-        const { name, email } = response.data.user; // Destructure name and email
+        const { name, email } = response.data.user;
         setUser(response.data.user);
         setName(name);
         setEmail(email);
         setPassword(password);
-        // Do not set the password for security reasons
       } else {
         console.error("Failed to fetch user data");
       }
@@ -47,7 +43,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     fetchUser();
-  }, [userId]); // Fetch user when userId changes
+  }, [userId]);
   return (
     <div className="w-full px-8 mt-20 py-4 shadow-lg">
       <div class="p-6 md:flex md:items-center">

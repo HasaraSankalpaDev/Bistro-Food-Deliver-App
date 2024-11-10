@@ -8,7 +8,6 @@ import Services from "../Components/Client/Services";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OurTeam from "../Components/Client/OurTeam";
-import { CartProvider } from "../Lib/Context/CartContext";
 
 export default function Home() {
   return (

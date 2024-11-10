@@ -2,6 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 
 const ContactUs = () => {
+  // Submit Handler
   const handleSubmit = (e) => {
     e.preventDefault();
     toast.success("Your Message Successfully Saved !");

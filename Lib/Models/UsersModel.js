@@ -6,8 +6,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
 
   type: {
-    type: String, // e.g., 'admin', 'customer', etc.
-    required: true, // Make it optional if not needed
+    type: String,
+    required: true,
   },
 });
 

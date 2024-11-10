@@ -3,7 +3,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const UserProfile = ({ id }) => {
-  // User Data
   const [name, setName] = useState();
   const [email, setEmail] = useState();
 
@@ -13,7 +12,6 @@ const UserProfile = ({ id }) => {
       const response = await axios.get(
         `http://localhost:3000/Api/Users?id=${id}`
       );
-      console.log(response);
       setName(response.data.user.name);
       setEmail(response.data.user.email);
     } catch (error) {
@@ -23,7 +21,7 @@ const UserProfile = ({ id }) => {
 
   useEffect(() => {
     fetchUser();
-  }, [id]); // Depend on adminId
+  }, [id]);
 
   return (
     <div>

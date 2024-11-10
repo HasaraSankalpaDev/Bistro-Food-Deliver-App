@@ -5,7 +5,6 @@ import { LuShoppingCart } from "react-icons/lu";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-// pages/menu.js
 const page = () => {
   const [userId, setUserId] = useState(null);
 
@@ -16,7 +15,6 @@ const page = () => {
   return (
     <div>
       <Nav />
-      {/* // Sign Error Massage */}
 
       <div className="mt-30">
         {userId ? (

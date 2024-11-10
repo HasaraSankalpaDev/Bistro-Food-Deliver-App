@@ -1,13 +1,10 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
-
 import AdminSideBarLinks from "./AdminSideBarLinks";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -18,9 +15,7 @@ const Sidebar = () => {
         isCollapsed ? "w-20" : "w-96"
       } duration-300 bg-gray-800 relative  overflow-y-hidden`}
     >
-      {/* Sidebar Content */}
       <div className="relative w-full flex flex-col items-center align-middle h-full">
-        {/* Sidebar Items */}
         <button
           onClick={toggleSidebar}
           className="flex items-center justify-between p-4 text-white w-full duration-300 mt-5"
@@ -40,7 +35,6 @@ const Sidebar = () => {
             )}
           </span>
         </button>
-        {/* Nav Link */}
         <AdminSideBarLinks isCollapsed={isCollapsed} />
       </div>
     </div>

@@ -19,6 +19,7 @@ const Nav = () => {
   const [userId, setUserId] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  // Cart Handler
   const goToCartPage = () => {
     window.location.href = "      http://localhost:3000/User/CartItems";
   };
@@ -32,16 +33,19 @@ const Nav = () => {
     }
   };
 
+  // Handle Model
   const handleLoginModel = () => {
     setLoginModel(true);
     setSignUpModel(false);
   };
 
+  // Handle Model
   const handleOpenModal = () => {
     setSignUpModel(true);
     setLoginModel(false);
   };
 
+  // Handle Model
   const handleCloseModal = () => {
     setSignUpModel(false);
     setLoginModel(false);
@@ -79,18 +83,14 @@ const Nav = () => {
   return (
     <div className="fixed top-0 w-full bg-white z-10 px-5 py-4 md:px-12 lg:px-28 shadow-md">
       <div className="flex items-center justify-between">
-        {/* Logo */}
         <Link href="/">
-          {/* <h3 className="text-3xl font-semibold text-orange-600">Bisto.</h3> */}
           <Image src={assets.logo} width={140} height={100} alt="sds" />
         </Link>
 
-        {/* Navigation Links */}
         <div className="hidden md:flex items-center ">
           <NavLinks navLink={navLink} handleNavLinkClick={handleNavLinkClick} />
         </div>
 
-        {/* Icons and Sign In Button */}
         <div className="flex items-center space-x-6">
           <FaSearch className="text-2xl cursor-pointer hover:text-orange-500 transition" />
 
@@ -153,15 +153,12 @@ const Nav = () => {
           )}
         </div>
       </div>
-      {/* Sidebar Component */}
       <CartItemSideBar isOpen={isSidebarOpen} onClose={toggleSidebar} />
 
-      {/* Sign Up Modal */}
       {signUpModel && (
         <SignUpForm onClose={handleCloseModal} onLoginOpen={handleLoginModel} />
       )}
 
-      {/* Log In Modal */}
       {loginModel && (
         <LoginForm onClose={handleCloseModal} onOpen={handleOpenModal} />
       )}

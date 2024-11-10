@@ -12,7 +12,6 @@ function NavLinks({ navLink, handleNavLinkClick, id }) {
 
   return (
     <div className="gap-8 space-x-6">
-      {" "}
       <Link
         href={`/?${id}`}
         onClick={() => handleNavLinkClick("home")}

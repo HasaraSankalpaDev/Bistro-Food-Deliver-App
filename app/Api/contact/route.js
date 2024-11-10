@@ -1,8 +1,8 @@
 import ContactModel from "@/Components/Lib/Models/ContactModel";
 import { NextResponse } from "next/server";
 import { connectDB } from "@/Components/Lib/Config/Db.config";
-// Contacts Listing API Endpoint
 
+// Api Endpoint to Get Messages
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const contactId = searchParams.get("id");
@@ -16,7 +16,7 @@ export async function GET(request) {
   }
 }
 
-// Saving Contacts
+// Api Endpoint to Save Messages
 export async function POST(request) {
   await connectDB();
   try {
@@ -55,7 +55,7 @@ export async function POST(request) {
   }
 }
 
-// API Endpoint to Delete Message
+// Api Endpoint to Delete Messages
 
 export async function DELETE(request) {
   const { searchParams } = new URL(request.url);

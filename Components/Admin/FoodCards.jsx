@@ -14,6 +14,7 @@ export const FoodCards = ({ foods }) => {
     setIsModalOpen(true);
   };
 
+  // Modal handling
   const closeModal = () => {
     setCurrentFood(null);
     setIsModalOpen(false);
@@ -54,11 +55,10 @@ export const FoodCards = ({ foods }) => {
         }
       );
 
-      // Check if response.data exists and has a success key
       if (response.data && response.data.success) {
         toast.success("Food item updated successfully!");
         closeModal();
-        window.location.reload(); // Refresh the page to reflect changes
+        window.location.reload();
       } else {
         toast.error(response.data?.msg || "Failed to update the food item");
       }

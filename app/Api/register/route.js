@@ -2,6 +2,7 @@ import UserModel from "@/Components/Lib/Models/UsersModel";
 import { NextResponse } from "next/server";
 import { connectDB } from "@/Components/Lib/Config/Db.config";
 
+// Api Endpoint to User Registration Part
 export async function POST(request) {
   await connectDB();
 
