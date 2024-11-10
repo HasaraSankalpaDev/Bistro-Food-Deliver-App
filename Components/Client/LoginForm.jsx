@@ -57,10 +57,7 @@ function LoginForm({ onClose, onOpen }) {
               toast.error("User Not Found!");
             } else if (response.data.msg === "Invalid_Credentials") {
               toast.error("Invalid Email or Password!");
-            } else {
-              toast.error("User Not Found!");
             }
-
             // Handle User
             if (response.data.msg === "User_Found") {
               const uId = response.data.user._id;

@@ -47,6 +47,13 @@ const Page = () => {
 
     if (response.data.success) {
       toast.success("Food Item Saved Succesfully !");
+      setData({
+        itemName: "",
+        itemPrice: "",
+        itemDescription: "",
+        itemCategory: "",
+        itemImage: "",
+      });
     } else {
       toast.success(response.data.msg);
     }
