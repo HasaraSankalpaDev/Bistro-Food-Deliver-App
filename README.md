@@ -52,3 +52,9 @@ A full-stack restaurant application built with Next.js, React, MongoDB, and Axio
    ```
 
    Your application will be available at `http://localhost:3000`.
+
+Now Text App. If You Found any Bug Please Notify me from my Email Address
+
+```bash
+hasarasankalpa176@gmail.com
+```
