@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -20,24 +21,36 @@ const Footer = () => {
             <h3 className="font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <Link
+                  href="/pages/home"
+                  className="text-gray-400 hover:text-white"
+                >
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <Link
+                  href="/pages/menu"
+                  className="text-gray-400 hover:text-white"
+                >
                   Menu
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  Sevices
-                </a>
+                <Link
+                  href="/pages/gallery"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Gallery
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
-                  Order
-                </a>
+                <Link
+                  href="/pages/contact"
+                  className="text-gray-400 hover:text-white"
+                >
+                  Contact
+                </Link>
               </li>
             </ul>
           </div>
@@ -48,7 +61,7 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li>Address: 123 Restaurant St, City, Country</li>
               <li>Phone: +123 456 789</li>
-              <li>Email: contact@restaurant.com</li>
+              <li>Email: Hasarasankalpa176@gmail.com</li>
             </ul>
           </div>
         </div>
@@ -58,7 +71,7 @@ const Footer = () => {
 
         {/* Bottom Section */}
         <div className="flex flex-wrap justify-between items-center text-gray-400">
-          <p>&copy; 2024 Restaurant Name. All Rights Reserved.</p>
+          <p>&copy; 2024 Bistro. All Rights Reserved.</p>
           <div className="flex space-x-4">
             <a href="#" className="hover:text-white">
               Privacy Policy

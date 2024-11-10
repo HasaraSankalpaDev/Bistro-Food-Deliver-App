@@ -39,18 +39,6 @@ const SideBar = () => {
           </Link>
 
           {/* Orders Link */}
-          <Link href="/User/Orders" onClick={() => setMenu("orders")}>
-            <div
-              className={`flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 text-center rounded-lg mb-5 cursor-pointer transition-all ${
-                menu === "orders"
-                  ? "bg-orange-500 text-white"
-                  : "bg-white text-dark"
-              } hover:bg-orange-500 hover:text-white`}
-            >
-              {/* <Image src={assets.add_icon} alt="" width={28} /> */}
-              <p>My Orders</p>
-            </div>
-          </Link>
 
           {/* Favorites Link */}
           <Link href="/" onClick={() => setMenu("favorites")}>
@@ -63,6 +51,19 @@ const SideBar = () => {
             >
               {/* <Image src={assets.add_icon} alt="" width={28} /> */}
               <p>Favorites</p>
+            </div>
+          </Link>
+
+          <Link href="/User/LogOut" onClick={() => setMenu("logOut")}>
+            <div
+              className={`flex items-center justify-center gap-3 font-medium px-3 py-2 mr-5 text-center rounded-lg mb-5 cursor-pointer transition-all ${
+                menu === "logOut"
+                  ? "bg-red-500 text-white"
+                  : "bg-white border-red-500 border-2 text-dark"
+              } hover:bg-red-600 hover:text-white`}
+            >
+              {/* <Image src={assets.add_icon} alt="" width={28} /> */}
+              <p>Log Out</p>
             </div>
           </Link>
         </div>

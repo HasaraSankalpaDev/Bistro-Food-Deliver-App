@@ -8,9 +8,15 @@ const AdminPage = () => {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
+  const [adminId, setAdminId] = useState();
+  useEffect(() => {
+    const id = localStorage.getItem("adminId");
+    setAdminId(id);
+  }, []);
+
   return (
     <div>
-      <UserProfile id={id} />
+      <UserProfile />
     </div>
   );
 };

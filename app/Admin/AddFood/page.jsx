@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import { useSearchParams } from "next/navigation"; // Use this instead of useRouter
+import { useRouter } from "next/navigation";
 const Page = () => {
   // State Handle
   const [image, setImage] = useState(null);
@@ -13,6 +14,7 @@ const Page = () => {
     itemCategory: "",
     itemImage: "",
   });
+  const [adminId, setAdminId] = useState();
 
   console.log(data);
 
@@ -53,6 +55,10 @@ const Page = () => {
       toast.success(response.data.msg);
     }
   };
+  useEffect(() => {
+    const id = localStorage.getItem("adminId");
+    setAdminId(id);
+  }, []);
 
   return (
     <div>

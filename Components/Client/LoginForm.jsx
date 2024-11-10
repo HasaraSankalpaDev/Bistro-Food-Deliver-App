@@ -18,6 +18,11 @@ function LoginForm({ onClose, onOpen }) {
       localStorage.setItem("userId", id); // Store the user ID in local storage
     }
   };
+  const saveAdminId = (id) => {
+    if (id) {
+      localStorage.setItem("adminId", id); // Store the user ID in local storage
+    }
+  };
 
   // Input Handler
   const onChangeHandler = (e) => {
@@ -56,16 +61,20 @@ function LoginForm({ onClose, onOpen }) {
               toast.error("User Not Found!");
             } else if (response.data.msg === "Invalid_Credentials") {
               toast.error("Invalid Email or Password!");
-            } else if (response.data.msg === "User_Found") {
+            } else {
+              toast.error("User Not Found!");
+            }
+
+            if (response.data.msg === "User_Found") {
               const uId = response.data.user._id;
               router.push("http://localhost:3000");
               saveUserId(uId);
               window.location.reload();
-            } else if (response.data.msg === "Admin_Found") {
+            }
+            if (response.data.msg === "Admin_Found") {
               const uId = response.data.user._id;
-              router.push(`/Admin?id=${uId}`);
-            } else {
-              toast.error("User Not Found!");
+              saveAdminId(uId);
+              router.push("/Admin/Dashboard");
             }
           }
         } catch (err) {

@@ -9,6 +9,7 @@ import SignUpForm from "./SignUpForm";
 import NavLinks from "./NavLinks";
 import Image from "next/image";
 import CartItemSideBar from "./CartItemSideBar";
+import { assets } from "@/Components/Assets/assets";
 
 const Nav = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -80,7 +81,8 @@ const Nav = () => {
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <h3 className="text-3xl font-semibold text-orange-600">Bisto.</h3>
+          {/* <h3 className="text-3xl font-semibold text-orange-600">Bisto.</h3> */}
+          <Image src={assets.logo} width={140} height={100} alt="sds" />
         </Link>
 
         {/* Navigation Links */}
@@ -109,9 +111,9 @@ const Nav = () => {
           ) : (
             <button
               onClick={handleOpenModal}
-              className="hidden sm:flex items-center font-medium py-2 px-6 border border-transparent bg-orange-600 text-white rounded-full hover:bg-orange-700 transition"
+              className="hidden sm:flex items-center font-medium py-2 px-6 border border-transparent bg-gray-800 text-white rounded-full hover:bg-gray-900 transition"
             >
-              Sign In
+              Sign Up
             </button>
           )}
 
@@ -123,7 +125,9 @@ const Nav = () => {
                 id="dropdownImage"
               >
                 {" "}
-                <CgProfile className="text-3xl" />
+                <div className="flex gap-3 bg-orange-600 text-white py-2 px-2 rounded-full">
+                  <CgProfile className="text-3xl" />
+                </div>
               </div>
 
               {isDropdownVisible && (

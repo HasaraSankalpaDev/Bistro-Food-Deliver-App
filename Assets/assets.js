@@ -14,6 +14,8 @@ import team_02 from "./team-2.jpg";
 import team_03 from "./team-3.jpg";
 import team_04 from "./team-4.jpg";
 import profile_icon from "./profile-icon.png";
+import not_found from "./404.jpeg";
+import logo from "./logo.png";
 
 // Exporting assets
 export const assets = {
@@ -28,81 +30,8 @@ export const assets = {
   team_03,
   team_04,
   profile_icon,
+  not_found,
+  logo,
 };
-
-// Defining food items
-const food_items = [
-  {
-    id: 1,
-    key: 1,
-    name: "Chicken Salad",
-    short_description: "psum ipsum clita erat amet dolor justo diam",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the..",
-    image: salad_01, // Corrected the image reference
-    category: "Salads",
-    price: "50",
-  },
-  {
-    id: 2,
-    key: 2,
-
-    name: "Ice Cream Desert",
-    short_description: "psum ipsum clita erat amet dolor justo diam",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the..",
-    image: desert_01, // Corrected the image reference
-    category: "Desserts",
-    price: "50",
-  },
-  {
-    id: 3,
-    key: 3,
-
-    name: "Chicken Sandwitch",
-    short_description: "psum ipsum clita erat amet dolor justo diam",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the..",
-    image: pizza_01, // Corrected the image reference
-    category: "Sandwiches",
-    price: "50",
-  },
-  {
-    id: 4,
-    key: 4,
-
-    name: "Chicken Pizza",
-    short_description: "psum ipsum clita erat amet dolor justo diam",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the..",
-    image: pizza_01, // Corrected the image reference
-    category: "Cakes",
-    price: "50",
-  },
-  {
-    id: 5,
-    key: 5,
-
-    name: "Chicken Pizza",
-    short_description: "psum ipsum clita erat amet dolor justo diam",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the..",
-    image: drinck_01, // Corrected the image reference
-    category: "Juce",
-    price: "50",
-  },
-  {
-    id: 6,
-    key: 6,
-
-    name: "Chicken Noodles",
-    short_description: "psum ipsum clita erat amet dolor justo diam",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the..",
-    image: noodles_01, // Corrected the image reference
-    category: "Noodles",
-    price: "50",
-  },
-];
 
 export default food_items;

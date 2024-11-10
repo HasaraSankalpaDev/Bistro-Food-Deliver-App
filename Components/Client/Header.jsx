@@ -9,7 +9,7 @@ const Header = () => {
           <h1 className="header-heading  text-white text-6xl capitalize mt-5 mb-5">
             <span className="text-orange-600">Fresh & Healthy Foods</span>
           </h1>
-          <p className="text-gray-300 mb-5 text-xl ">
+          <p className="text-gray-300 mb-5 text-lg ">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
             Perspiciatis ipsum enim rem ut. Eum vel repellat hic expedita quod
             reprehenderit eligendi voluptatum officia sequi.

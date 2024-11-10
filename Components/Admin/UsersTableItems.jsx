@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const UsersTableItems = () => {
   const [usersList, setUsersList] = useState([]); // Initialize as an empty array
@@ -34,10 +35,11 @@ const UsersTableItems = () => {
 
       if (response.status === 200) {
         // Assuming you want to update the users list in your state
+
         setUsersList((prevList) =>
           prevList.filter((user) => user._id !== userId)
         );
-        console.log("User deleted successfully");
+        toast.success("User Deleted Successfully!");
       } else {
         console.error("Failed to delete user:", response);
       }

@@ -2,7 +2,10 @@
 
 import OrderTableItems from "@/Components/Components/User/OrderTableItems";
 import axios from "axios";
+import Link from "next/link";
+
 import React, { useEffect, useState } from "react";
+
 import { toast } from "react-toastify";
 
 const Page = () => {
@@ -101,6 +104,7 @@ const Page = () => {
       <div className="container mx-auto p-4">
         <div className="flex w-full justify-between">
           <h2 className="text-2xl font-semibold mb-4">Orders List</h2>
+
           <h3 className="text-xl font-semibold">Total : ${fullPrice}</h3>
         </div>
         <div className="overflow-x-auto">
@@ -135,9 +139,12 @@ const Page = () => {
             </tbody>
           </table>
           <div className="flex w-full justify-start mt-5 gap-5">
-            <button className="bg-gray-800 text-white py-2 px-5 rounded-md hover:bg-gray-900">
+            <Link
+              href={`/User/Orders?order=true&userName=${userName}&total=${fullPrice}`}
+              className="bg-orange-600 text-white py-2 px-5 rounded-md hover:bg-orange-700"
+            >
               Order Now
-            </button>
+            </Link>
             <button
               onClick={() => deleteAllById(userId)}
               className="bg-gray-800 text-white py-2 px-5 rounded-md hover:bg-gray-900"
