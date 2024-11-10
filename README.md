@@ -35,7 +35,7 @@ A full-stack restaurant application built with Next.js, React, MongoDB, and Axio
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/restaurant-app.git
+   git clone https://github.com/HasaraSankalpaDev/Bistro-Food-Deliver-App.git
    cd restaurant-app
    ```
 
