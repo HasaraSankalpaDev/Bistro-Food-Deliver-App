@@ -1,6 +1,12 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 const ContactUs = () => {
+  // Submit Handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.success("Your Message Successfully Saved !");
+  };
   return (
     <div className="px-5 mt-10 py-20 md:px-12 lg:px-28 text-black">
       <div className="text-center">
@@ -11,20 +17,27 @@ const ContactUs = () => {
           Lorem ipsum dolor sit, amet consectetur adipisicing elit.
         </p>
       </div>
-      <form className="w-full flex flex-col items-center">
+      <form
+        className="w-full flex flex-col items-center"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           placeholder="Enter Your Name"
+          required
           className="w-full sm:w-[500px] mt-4 px-8 py-4 border-0 outline-none bg-gray-200 rounded-md"
         />
         <input
           type="email"
           placeholder="Enter Your Email Address"
+          required
           className="w-full sm:w-[500px] mt-4 px-8 py-4 border-0 outline-none bg-gray-200 rounded-md"
         />
         <textarea
           rows={5}
           placeholder="Enter Your Message"
+          required
+          minLength={15}
           className="w-full sm:w-[500px] mt-4 px-8 py-4 border-0 outline-none bg-gray-200 rounded-md"
         />
         <button

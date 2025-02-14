@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { RiCloseFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 function SignUpForm({ onClose, onLoginOpen }) {
   const [data, setData] = useState({
@@ -19,23 +20,50 @@ function SignUpForm({ onClose, onLoginOpen }) {
   // Submit Handler
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
 
-    try {
-      const response = await axios.post("/Api/Users", {
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        type: data.type,
-      }); // Check API path
-      console.log("Success:", response.data);
-      // You can add a success message or redirect here
-    } catch (error) {
-      console.error(
-        "Error:",
-        error.response ? error.response.data : error.message
-      );
-      // Handle the error (e.g., show an error message to the user)
+    // Validate Name
+    if (data.name === "") {
+      toast.error("Name is Required!");
+    } else {
+      // Validate Email
+      if (data.email === "") {
+        toast.error("Email Address is Required!");
+      } else if (
+        !data.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+      ) {
+        toast.error("Please Enter a Valid Email!");
+      } else {
+        // Validate Password
+        if (data.password === "") {
+          toast.error("Password is Required!");
+        } else if (data.password.length < 8) {
+          toast.error("Password Must be at least 8 characters.");
+        } else {
+          // User Registration Logic
+          try {
+            const formData = new FormData();
+            formData.append("name", data.name);
+            formData.append("email", data.email);
+            formData.append("password", data.password);
+            formData.append("type", data.type);
+
+            const response = await axios.post("/Api/register", formData); // Check API path
+
+            if (response.data.msg === "User_Already_Exist") {
+              toast.error("User Already Exist, User Another Email Address!");
+            } else if (response.data.msg === "User_Registered") {
+              onLoginOpen(true);
+            } else {
+              toast.error("404 Error. Try Again Later!");
+            }
+          } catch (error) {
+            console.error(
+              "Error:",
+              error.response ? error.response.data : error.message
+            );
+          }
+        }
+      }
     }
   };
 
@@ -53,7 +81,6 @@ function SignUpForm({ onClose, onLoginOpen }) {
                 type="text"
                 className="w-full border border-gray-300 p-3"
                 placeholder="Enter Name"
-                required
                 onChange={onChangeHandler}
                 value={data.name}
                 name="name"
@@ -64,10 +91,9 @@ function SignUpForm({ onClose, onLoginOpen }) {
                 Email Address:
               </label>
               <input
-                type="email"
+                type="text"
                 className="w-full border border-gray-300 p-3"
                 placeholder="Enter Email Address"
-                required
                 onChange={onChangeHandler}
                 name="email"
                 value={data.email}
@@ -81,7 +107,6 @@ function SignUpForm({ onClose, onLoginOpen }) {
                 type="password"
                 className="w-full border border-gray-300 p-3"
                 placeholder="Enter Your Password"
-                required
                 onChange={onChangeHandler}
                 name="password"
                 value={data.password}
@@ -122,7 +147,6 @@ function SignUpForm({ onClose, onLoginOpen }) {
             className="absolute top-4 right-2 text-gray-600 hover:text-gray-900"
           >
             <RiCloseFill className="mr-5 w-[20px] h-[20px]" />{" "}
-            {/* Correct icon */}
           </button>
         </div>
       </div>

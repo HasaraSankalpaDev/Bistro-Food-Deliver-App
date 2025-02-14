@@ -1,17 +1,14 @@
 import UserModel from "@/Components/Lib/Models/UsersModel";
 import { NextResponse } from "next/server";
-import { connectDB } from "@/Components/Lib/Config/Db.config"; // Changed to import
+import { connectDB } from "@/Components/Lib/Config/Db.config";
 
-// Get All Users
-
+// Api Endpoint to Get Users
 export async function GET(request) {
-  // Ensure the database is connected before performing any operation
   await connectDB();
 
   try {
-    // Parse the request URL and its query parameters
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get("id"); // Get the 'id' query parameter
+    const userId = searchParams.get("id");
 
     if (userId) {
       // Find a user by the provided ID
@@ -37,24 +34,20 @@ export async function GET(request) {
   }
 }
 
-// Add User
+// Api Endpoint to Save Users
 export async function POST(request) {
-  // Ensure the database is connected before performing any operation
   await connectDB();
 
   try {
-    // If you are sending data as JSON
-    const userData = await request.json(); // Parse the request body as JSON
+    const formData = await request.formData();
 
-    // Construct the user data
     const usersData = {
-      name: userData.name, // Access the fields directly from userData
-      email: userData.email,
-      password: userData.password, // Ensure password is passed
-      type: "user", // Default to 'user' if userType is not provided
+      name: formData.get("name"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+      type: "user",
     };
 
-    // Save the user data to the database
     await UserModel.create(usersData);
     console.log("User Created");
 
@@ -70,4 +63,54 @@ export async function POST(request) {
       error: error.message,
     });
   }
+}
+
+// API Endpoint to Edit Users
+export async function PUT(request) {
+  try {
+    await connectDB();
+
+    const formData = await request.formData();
+    const id = formData.get("id");
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    const existingUser = await UserModel.findById(id);
+    if (!existingUser) {
+      return NextResponse.json({ success: false, msg: "User not found" });
+    }
+
+    const updatedData = {
+      name: name || existingUser.name,
+      email: email || existingUser.email,
+      password: password || existingUser.password,
+    };
+
+    // Update the user in the database
+    await UserModel.findByIdAndUpdate(id, updatedData);
+
+    return NextResponse.json({
+      success: true,
+      msg: "User Updated",
+    });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    return NextResponse.json({
+      success: false,
+      msg: "Failed to update user",
+      error: error.message,
+    });
+  }
+}
+
+// API Endpoint to Delete User
+
+export async function DELETE(request) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
+
+  const user = await UserModel.findById(id);
+  await UserModel.findByIdAndDelete(id);
+  return NextResponse.json({ msg: "User  Deleted" });
 }

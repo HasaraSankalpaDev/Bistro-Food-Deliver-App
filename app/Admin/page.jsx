@@ -1,7 +1,13 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import UserProfile from "@/Components/Components/Admin/AdminProfile";
 
-const page = () => {
-  return <div>Admin</div>;
+const AdminPage = () => {
+  return (
+    <div>
+      <UserProfile />
+    </div>
+  );
 };
 
-export default page;
+export default AdminPage;

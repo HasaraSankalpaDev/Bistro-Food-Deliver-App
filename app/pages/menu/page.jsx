@@ -1,18 +1,48 @@
 "use client";
 import Nav from "@/Components/Components/Client/Nav";
-import { useState } from "react";
-import food_items, { assets } from "@/Components/Assets/assets";
+import { useEffect, useState } from "react";
 import MenuItem from "@/Components/Components/Client/MenuItem";
 import Footer from "@/Components/Components/Client/Footer";
+import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-// pages/menu.js
 const page = () => {
   const [menu, setMenu] = useState("All");
-  const items = Array.isArray(food_items) ? food_items : [];
+  const [foods, setFoods] = useState([]); // You might not need this state if it's not being used
+  const [userId, setUserId] = useState(null);
+
+  // Fetch All Items
+  const fetchAllItems = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/Api/food");
+      console.log("API Response:", response);
+      if (Array.isArray(response.data.foods)) {
+        setFoods(response.data.foods);
+      } else {
+        console.error("Expected an array, received:", response.data);
+        setFoods([]);
+      }
+    } catch (error) {
+      console.error("Error fetching food items:", error);
+      setFoods([]);
+    }
+  };
+
+  // Fetch UserID
+  useEffect(() => {
+    const id = localStorage.getItem("userId");
+    setUserId(id);
+  }, []);
+
+  useEffect(() => {
+    fetchAllItems();
+  }, []);
 
   return (
     <div>
       <Nav />
+      <ToastContainer theme="dark" />+
       <div className="px-5 mt-10 py-20 md:px-12 lg:px-28 text-black ">
         <h1 className="text-4xl font-semibold mb-5 ">Our Menu</h1>
         <p className="text-[16px] text-gray-800">
@@ -30,88 +60,89 @@ const page = () => {
                 onClick={() => setMenu("All")}
                 className={
                   menu === "All"
-                    ? "bg-orange-600 py-2 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                    : "bg-gray-200 py-2 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
                 }
               >
                 All
               </div>
               <div
-                onClick={() => setMenu("Salads")}
+                onClick={() => setMenu("Breakfast")}
                 className={
-                  menu === "Salads"
-                    ? "bg-orange-600 py-2 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                    : "bg-gray-200 py-2 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                  menu === "Breakfast"
+                    ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
                 }
               >
-                Salads
+                Breakfast
+              </div>
+              <div
+                onClick={() => setMenu("Lunch")}
+                className={
+                  menu === "Lunch"
+                    ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                }
+              >
+                Lunch
+              </div>
+              <div
+                onClick={() => setMenu("Dinner")}
+                className={
+                  menu === "Dinner"
+                    ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                }
+              >
+                Dinner
               </div>
               <div
                 onClick={() => setMenu("Desserts")}
                 className={
                   menu === "Desserts"
-                    ? "bg-orange-600 py-2 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                    : "bg-gray-200 py-2 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
                 }
               >
                 Desserts
               </div>
               <div
-                onClick={() => setMenu("Sandwiches")}
+                onClick={() => setMenu("Drinks & Tea")}
                 className={
-                  menu === "Sandwiches"
-                    ? "bg-orange-600 py-2 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                    : "bg-gray-200 py-2 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                  menu === "Drinks & Tea"
+                    ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
                 }
               >
-                Sandwiches
+                Drinks
               </div>
               <div
-                onClick={() => setMenu("Cakes")}
+                onClick={() => setMenu("Wine Card")}
                 className={
-                  menu === "Cakes"
-                    ? "bg-orange-600 py-2 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                    : "bg-gray-200 py-2 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                  menu === "Wine Card"
+                    ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                    : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
                 }
               >
-                Cakes
-              </div>
-              <div
-                onClick={() => setMenu("Juce")}
-                className={
-                  menu === "Juce"
-                    ? "bg-orange-600 py-2 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                    : "bg-gray-200 py-2 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                }
-              >
-                Juce
-              </div>
-              <div
-                onClick={() => setMenu("Noodles")}
-                className={
-                  menu === "Noodles"
-                    ? "bg-orange-600 py-2 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                    : "bg-gray-200 py-2 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                }
-              >
-                Noodles
+                Wine Card
               </div>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6  mt-12">
-            {items
+            {foods
               .filter((item) =>
-                menu === "All" ? true : item.category === menu
+                menu === "All" ? true : item.itemCategory === menu
               )
               .map((item) => (
                 <MenuItem
-                  key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  image={item.image}
-                  description={item.short_description}
-                  category={item.category}
-                  price={item.price}
+                  id={item._id}
+                  key={item._id}
+                  userId={userId}
+                  name={item.itemName}
+                  image={item.itemImage}
+                  description={item.itemDescription}
+                  category={item.itemCategory}
+                  price={item.itemPrice}
                 />
               ))}
           </div>

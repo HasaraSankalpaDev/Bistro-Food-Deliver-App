@@ -1,10 +1,11 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
-function NavLinks({ navLink, handleNavLinkClick }) {
+function NavLinks({ navLink, handleNavLinkClick, id }) {
+  const [userId] = useState(() => localStorage.getItem("userId")); // Fetch userId directly
+
   return (
     <div className="gap-8 space-x-6">
-      {" "}
       <Link
         href="/"
         onClick={() => handleNavLinkClick("home")}
@@ -27,17 +28,20 @@ function NavLinks({ navLink, handleNavLinkClick }) {
       >
         Menu
       </Link>
-      <Link
-        href="/pages/order"
-        onClick={() => handleNavLinkClick("order")}
-        className={
-          navLink === "order"
-            ? "text-[18px] text-orange-600 cursor-pointer hover:text-orange-500 transition"
-            : "text-[18px] text-gray-600 cursor-pointer hover:text-orange-500 transition"
-        }
-      >
-        Order
-      </Link>
+      {userId && (
+        <Link
+          href="/User/Profile"
+          onClick={() => handleNavLinkClick("profile")}
+          className={
+            navLink === "profile"
+              ? "text-[18px] text-orange-600 cursor-pointer hover:text-orange-500 transition"
+              : "text-[18px] text-gray-600 cursor-pointer hover:text-orange-500 transition"
+          }
+        >
+          Dashboard
+          <span className="text-red-600">*</span>
+        </Link>
+      )}
       <Link
         href="/pages/gallery"
         onClick={() => handleNavLinkClick("gallery")}

@@ -1,7 +1,20 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import UserProfile from "@/Components/Components/Admin/AdminProfile";
 
 function page() {
-  return <div></div>;
+  const [adminId, setAdminId] = useState();
+
+  useEffect(() => {
+    const id = localStorage.getItem("adminId");
+    setAdminId(id);
+  }, []);
+
+  return (
+    <div>
+      <UserProfile id={adminId} />
+    </div>
+  );
 }
 
 export default page;

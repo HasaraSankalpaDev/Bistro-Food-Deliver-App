@@ -1,21 +1,35 @@
 "use client";
-
-// import { assets } from "../../Assets/assets"; // Ensure this import is correct
-import Image from "next/image";
-import React, { useState } from "react";
-// import food_items from "@/Assets/assets"; // Ensure this is correctly imported
+import React, { useEffect, useState } from "react";
 import MenuItem from "./MenuItem";
 import food_items, { assets } from "@/Components/Assets/assets";
+import axios from "axios";
 
 const FoodMenu = () => {
   const [menu, setMenu] = useState("All");
-  const [foods, setFoods] = useState([]); // You might not need this state if it's not being used
+  const [foods, setFoods] = useState([]);
+  const [userId, setUserId] = useState(null);
 
-  // Log food_items to check its value
-  console.log(food_items[2]);
+  // Fetch All Items
+  const fetchAllItems = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/Api/food");
+      if (Array.isArray(response.data.foods)) {
+        setFoods(response.data.foods);
+      } else {
+        console.error("Expected an array, received:", response.data);
+        setFoods([]);
+      }
+    } catch (error) {
+      console.error("Error fetching food items:", error);
+      setFoods([]);
+    }
+  };
 
-  // Provide a default empty array if food_items is undefined
-  const items = Array.isArray(food_items) ? food_items : [];
+  useEffect(() => {
+    fetchAllItems();
+    const id = localStorage.getItem("userId");
+    setUserId(id);
+  }, []);
 
   return (
     <div className="mt-20 px-5 pt-15 md:px-12 lg:px-28 ">
@@ -40,14 +54,34 @@ const FoodMenu = () => {
             All
           </div>
           <div
-            onClick={() => setMenu("Salads")}
+            onClick={() => setMenu("Breakfast")}
             className={
-              menu === "Salads"
+              menu === "Breakfast"
                 ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
                 : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
             }
           >
-            Salads
+            Breakfast
+          </div>
+          <div
+            onClick={() => setMenu("Lunch")}
+            className={
+              menu === "Lunch"
+                ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+            }
+          >
+            Lunch
+          </div>
+          <div
+            onClick={() => setMenu("Dinner")}
+            className={
+              menu === "Dinner"
+                ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+                : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
+            }
+          >
+            Dinner
           </div>
           <div
             onClick={() => setMenu("Desserts")}
@@ -60,60 +94,43 @@ const FoodMenu = () => {
             Desserts
           </div>
           <div
-            onClick={() => setMenu("Sandwiches")}
+            onClick={() => setMenu("Drinks & Tea")}
             className={
-              menu === "Sandwiches"
+              menu === "Drinks & Tea"
                 ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
                 : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
             }
           >
-            Sandwiches
+            Drinks
           </div>
           <div
-            onClick={() => setMenu("Cakes")}
+            onClick={() => setMenu("Wine Card")}
             className={
-              menu === "Cakes"
+              menu === "Wine Card"
                 ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
                 : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
             }
           >
-            Cakes
-          </div>
-          <div
-            onClick={() => setMenu("Juce")}
-            className={
-              menu === "Juce"
-                ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-            }
-          >
-            Juce
-          </div>
-          <div
-            onClick={() => setMenu("Noodles")}
-            className={
-              menu === "Noodles"
-                ? "bg-orange-600 py-3 px-8 rounded-full text-white hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-                : "bg-gray-200 py-3 px-8 rounded-full text-gray-900 hover:bg-orange-500 hover:text-white transition duration-300 ease-in-out cursor-pointer"
-            }
-          >
-            Noodles
+            Wine Card
           </div>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 mt-8">
-        {/* // Card */}
-        {items
-          .filter((item) => (menu === "All" ? true : item.category === menu))
+        {foods
+          .filter((item) =>
+            menu === "All" ? true : item.itemCategory === menu
+          )
+          .slice(0, 6)
           .map((item) => (
             <MenuItem
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              image={item.image}
-              description={item.short_description}
-              category={item.category}
-              price={item.price}
+              id={item._id}
+              key={item._id}
+              userId={userId}
+              name={item.itemName}
+              image={item.itemImage}
+              description={item.itemDescription}
+              category={item.itemCategory}
+              price={item.itemPrice}
             />
           ))}
       </div>
