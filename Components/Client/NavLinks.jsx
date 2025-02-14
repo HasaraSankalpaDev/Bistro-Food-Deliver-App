@@ -1,8 +1,15 @@
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import React, { useState } from "react";
 
 function NavLinks({ navLink, handleNavLinkClick, id }) {
-  const [userId] = useState(() => localStorage.getItem("userId")); // Fetch userId directly
+  const [userId, setUserId] = useState(null);
+
+  // Fetch User Id
+  useEffect(() => {
+    const id = localStorage.getItem("userId");
+    setUserId(id);
+  }, []);
 
   return (
     <div className="gap-8 space-x-6">
@@ -18,7 +25,7 @@ function NavLinks({ navLink, handleNavLinkClick, id }) {
         Home
       </Link>
       <Link
-        href="/pages/menu"
+        href="pages/menu"
         onClick={() => handleNavLinkClick("menu")}
         className={
           navLink === "menu"

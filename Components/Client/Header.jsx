@@ -1,6 +1,6 @@
+"use client";
 import React from "react";
 import "./ClientComponents.css";
-
 const Header = () => {
   return (
     <header className="mt-20 px-5 py-40 pt-6 md:px-12 lg:px-28 header">
