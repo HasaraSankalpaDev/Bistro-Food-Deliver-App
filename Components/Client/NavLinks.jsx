@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function NavLinks({ navLink, handleNavLinkClick, id }) {
   const [userId, setUserId] = useState(null);
@@ -13,7 +14,7 @@ function NavLinks({ navLink, handleNavLinkClick, id }) {
   return (
     <div className="gap-8 space-x-6">
       <Link
-        href={`/?${id}`}
+        href="/"
         onClick={() => handleNavLinkClick("home")}
         className={
           navLink === "home"
@@ -24,7 +25,7 @@ function NavLinks({ navLink, handleNavLinkClick, id }) {
         Home
       </Link>
       <Link
-        href={`/pages/menu?${id}`}
+        href="pages/menu"
         onClick={() => handleNavLinkClick("menu")}
         className={
           navLink === "menu"
@@ -36,7 +37,7 @@ function NavLinks({ navLink, handleNavLinkClick, id }) {
       </Link>
       {userId && (
         <Link
-          href={`/User/Profile`}
+          href="/User/Profile"
           onClick={() => handleNavLinkClick("profile")}
           className={
             navLink === "profile"
@@ -49,7 +50,7 @@ function NavLinks({ navLink, handleNavLinkClick, id }) {
         </Link>
       )}
       <Link
-        href={`/pages/gallery?${id}`}
+        href="/pages/gallery"
         onClick={() => handleNavLinkClick("gallery")}
         className={
           navLink === "gallery"
@@ -60,7 +61,7 @@ function NavLinks({ navLink, handleNavLinkClick, id }) {
         Gallery
       </Link>
       <Link
-        href={`/pages/contact?${id}`}
+        href="/pages/contact"
         onClick={() => handleNavLinkClick("contact")}
         className={
           navLink === "contact"

@@ -6,10 +6,7 @@ import Footer from "@/Components/Components/Client/Footer";
 
 // pages/menu.js
 const page = () => {
-  useEffect(() => {
-    const id = localStorage.getItem("userId");
-    setUserId(id);
-  }, []);
+  const [images, setImages] = useState();
 
   const galleryImages = [
     "https://plus.unsplash.com/premium_photo-1681406994530-3de7406c21a5?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",

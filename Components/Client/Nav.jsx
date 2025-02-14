@@ -11,6 +11,8 @@ import Image from "next/image";
 import CartItemSideBar from "./CartItemSideBar";
 import { assets } from "@/Components/Assets/assets";
 
+import "./ClientComponents.css";
+
 const Nav = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [signUpModel, setSignUpModel] = useState(false);
@@ -84,7 +86,7 @@ const Nav = () => {
     <div className="fixed top-0 w-full bg-white z-10 px-5 py-4 md:px-12 lg:px-28 shadow-md">
       <div className="flex items-center justify-between">
         <Link href="/">
-          <Image src={assets.logo} width={140} height={100} alt="sds" />
+          <span className="logo text-5xl font-bold">Bistro.</span>
         </Link>
 
         <div className="hidden md:flex items-center ">
@@ -125,9 +127,7 @@ const Nav = () => {
                 id="dropdownImage"
               >
                 {" "}
-                <div className="flex gap-3 bg-orange-600 text-white py-2 px-2 rounded-full">
-                  <CgProfile className="text-3xl" />
-                </div>
+                <CgProfile className="text-3xl" />
               </div>
 
               {isDropdownVisible && (
